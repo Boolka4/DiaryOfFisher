@@ -5,4 +5,6 @@
     <string name="menu_item_report">Отчеты</string>
     <string name="menu_item_settings">Настройки</string>
 
+    <string name="no_waters_yet">У вас еще сохраненных водоемов, нажмите кнопку внизу для добавления</string>
+
 </resources>
