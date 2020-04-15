@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/watersListFragment"
+        android:icon="@drawable/ic_menu_water"
+        android:title="@string/menu_item_water" />
+
+    <item
+        android:id="@+id/reportsListFragment"
+        android:icon="@drawable/ic_menu_report"
+        android:title="@string/menu_item_report" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_menu_settings"
+        android:title="@string/menu_item_settings" />
+</menu>

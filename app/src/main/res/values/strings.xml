@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">DiaryOfFisher</string>
+    <string name="app_name">Дневник рыболова</string>
+
+    <string name="menu_item_water">Водоемы</string>
+    <string name="menu_item_report">Отчеты</string>
+    <string name="menu_item_settings">Настройки</string>
+
 </resources>

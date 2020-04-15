@@ -45,6 +45,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigationVersion"
+
     // koin
     implementation "org.koin:koin-android:$versions.koinVersion"
     implementation "org.koin:koin-android-scope:$versions.koinVersion"

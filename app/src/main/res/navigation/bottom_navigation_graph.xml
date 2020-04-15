@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_graph"
+    app:startDestination="@id/watersListFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/watersListFragment"
+        android:name="com.diary.fisher.waters_list.presentation.view.WatersListFragment"
+        android:label="WatersListFragment" />
+    <fragment
+        android:id="@+id/reportsListFragment"
+        android:name="com.diary.fisher.reports_list.presentation.view.ReportsListFragment"
+        android:label="ReportsListFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.diary.fisher.settings.presentation.view.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>
