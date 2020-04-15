@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonReport"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Отчеты"
+        android:text="детали отчета"
         android:gravity="center"
         android:textSize="22sp"/>
 
