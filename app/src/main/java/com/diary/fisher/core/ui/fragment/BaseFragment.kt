@@ -18,14 +18,14 @@ abstract class BaseFragment : Fragment() {
         instanceStateSaved = true
     }
 
-    protected fun showProgressDialog(progress: Boolean) {
+    protected fun showProgress(show: Boolean) {
         if (!isAdded || instanceStateSaved) return
 
         val fragment = childFragmentManager.findFragmentByTag(LoadAnimationDialogFragment.TAG)
-        if (fragment != null && !progress) {
+        if (fragment != null && !show) {
             (fragment as LoadAnimationDialogFragment).dismissAllowingStateLoss()
             childFragmentManager.executePendingTransactions()
-        } else if (fragment == null && progress) {
+        } else if (fragment == null && show) {
             LoadAnimationDialogFragment().show(
                 childFragmentManager,
                 LoadAnimationDialogFragment.TAG

@@ -1,14 +1,9 @@
 package com.diary.fisher.waters_list.presentation.adapter
 
-import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.RecyclerView
 import com.diary.fisher.R
 import com.diary.fisher.core.ui.adapter.BaseAdapter
 import com.diary.fisher.core.ui.adapter.BaseViewHolder
-import com.diary.fisher.core.ui.adapter.ListItem
 import com.diary.fisher.waters_list.models.WaterViewItem
 
 class WatersListAdapter(

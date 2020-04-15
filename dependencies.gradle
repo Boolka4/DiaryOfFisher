@@ -25,7 +25,7 @@ ext.versions = [
         navigationVersion   : "2.2.1",
 
         // di
-        koinVersion         : '2.0.1',
+        koinVersion         : '2.1.5',
 
         // network
         retrofitVersion     : '2.6.0',
