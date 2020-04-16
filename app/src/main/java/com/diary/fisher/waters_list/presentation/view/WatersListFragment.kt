@@ -3,8 +3,11 @@ package com.diary.fisher.waters_list.presentation.view
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.diary.fisher.R
 import com.diary.fisher.core.ui.fragment.BaseFragment
+import com.diary.fisher.waters_list.models.WaterViewItem
 import com.diary.fisher.waters_list.presentation.adapter.WatersListAdapter
 import com.diary.fisher.waters_list.presentation.view_model.WatersListState
 import com.diary.fisher.waters_list.presentation.view_model.WatersListViewModel
@@ -13,27 +16,20 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class WatersListFragment : BaseFragment() {
 
-
     private val viewModel by viewModel<WatersListViewModel>()
     private val watersAdapter: WatersListAdapter = WatersListAdapter { viewModel.onItemClicked(it) }
+
+    override fun getLayoutId() = R.layout.fragment_waters_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_waters_list, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvWaters.adapter = watersAdapter
-
+        rvWaters.layoutManager = LinearLayoutManager(view.context)
         val observer = Observer<WatersListState> {
             when (it) {
                 is WatersListState.ProgressState -> {
@@ -41,7 +37,7 @@ class WatersListFragment : BaseFragment() {
                     rvWaters.visibility = View.GONE
                     showProgress(true)
                 }
-                is WatersListState.EmptyDateState -> {
+                is WatersListState.EmptyDataState -> {
                     tvNoWaters.visibility = View.VISIBLE
                     rvWaters.visibility = View.GONE
                     showProgress(false)
@@ -51,11 +47,12 @@ class WatersListFragment : BaseFragment() {
                     showProgress(false)
                     tvNoWaters.visibility = View.GONE
                     rvWaters.visibility = View.VISIBLE
+
                     watersAdapter.setItems(it.items)
                 }
             }
         }
-        viewModel.state.observe(viewLifecycleOwner, observer)
+        viewModel.getWaterLiveData().observe(viewLifecycleOwner, observer)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

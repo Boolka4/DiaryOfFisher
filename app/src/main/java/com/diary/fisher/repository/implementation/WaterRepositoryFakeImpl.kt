@@ -15,6 +15,6 @@ class WaterRepositoryFakeImpl : WaterRepository {
     }
 
     override suspend fun getWatersList(): List<Water> {
-        return mutableListOf()
+        return mutableListOf(Water(1,"vileika","minsk",90,WaterType.LAKE))
     }
 }

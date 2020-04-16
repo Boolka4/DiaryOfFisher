@@ -1,18 +1,15 @@
-package com.diary.fisher.report_details.presentation.view
+package com.diary.fisher.report_add.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import com.diary.fisher.R
 import com.diary.fisher.core.ui.fragment.BaseFragment
 
 
-class ReportDetailsFragment : BaseFragment() {
-
-    override fun getLayoutId() = R.layout.fragment_report_details
+class ReportAddFragment : BaseFragment() {
+    override fun getLayoutId() = R.layout.fragment_report_add
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

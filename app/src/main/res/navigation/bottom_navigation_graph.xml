@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_reportsListFragment_to_reportDetailsFragment"
             app:destination="@id/reportDetailsFragment" />
+        <action
+            android:id="@+id/action_reportsListFragment_to_reportAddFragment"
+            app:destination="@id/reportAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -26,4 +29,8 @@
         android:id="@+id/reportDetailsFragment"
         android:name="com.diary.fisher.report_details.presentation.view.ReportDetailsFragment"
         android:label="ReportDetailsFragment" />
+    <fragment
+        android:id="@+id/reportAddFragment"
+        android:name="com.diary.fisher.report_add.presentation.view.ReportAddFragment"
+        android:label="ReportAddFragment" />
 </navigation>

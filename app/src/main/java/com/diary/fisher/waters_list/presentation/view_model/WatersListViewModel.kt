@@ -10,32 +10,32 @@ import kotlinx.coroutines.launch
 
 class WatersListViewModel(
     private val prepareWaterItemsUseCase: PrepareWaterItemsUseCase
-) :
-    ViewModel() {
+) : ViewModel() {
 
-    private val _state: MutableLiveData<WatersListState> = MutableLiveData()
-    val state: LiveData<WatersListState> get() = _state
+    private val state: MutableLiveData<WatersListState> = MutableLiveData()
 
     init {
-        _state.value = WatersListState.ProgressState
+        state.value = WatersListState.ProgressState
         viewModelScope.launch {
             val watersList = prepareWaterItemsUseCase.getItemsList()
             if (watersList.isEmpty()) {
-                _state.value = WatersListState.EmptyDateState
+                state.value = WatersListState.EmptyDataState
             } else {
-                _state.value = WatersListState.ShowItemsState(watersList)
+                state.value = WatersListState.ShowItemsState(watersList)
             }
         }
     }
 
-    fun onItemClicked(waterViewItem: WaterViewItem){}
+    fun getWaterLiveData(): LiveData<WatersListState> = state
+
+    fun onItemClicked(waterViewItem: WaterViewItem) {}
 }
 
 sealed class WatersListState {
 
     object ProgressState : WatersListState()
 
-    object EmptyDateState : WatersListState()
+    object EmptyDataState : WatersListState()
 
     data class ShowItemsState(val items: List<WaterViewItem>) : WatersListState()
 }
