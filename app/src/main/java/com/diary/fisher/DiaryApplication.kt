@@ -1,6 +1,7 @@
 package com.diary.fisher
 
 import android.app.Application
+import com.diary.fisher.create_data.di.createDataModule
 import com.diary.fisher.db.di.dbModule
 import com.diary.fisher.reports_list.di.reportsListModule
 import com.diary.fisher.repository.di.repositoryModule
@@ -19,6 +20,7 @@ class DiaryApplication : Application() {
             modules(repositoryModule)
             modules(watersListModule)
             modules(reportsListModule)
+            modules(createDataModule)
         }
     }
 }
