@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.diary.fisher.R
 import com.diary.fisher.core.models.common.SingleLineDataType
+import com.diary.fisher.create_single_line_data.presentation.view_model.CreateSingleLineDataViewModel
 import kotlinx.android.synthetic.main.dialog_single_line_data.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -36,7 +37,6 @@ class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
 
 
         val screenStateObserver = Observer<Boolean> {
-            etSingleData.setText("text text text")
             findNavController().popBackStack()
         }
 

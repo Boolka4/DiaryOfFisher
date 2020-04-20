@@ -16,7 +16,7 @@ class HookRepositoryImpl(
         hooksDao.insertHookBrand(hookBrandMapper.fromBusinessToDB(hookBrand))
     }
 
-    override suspend fun getHookBrand(id: Long): HookBrand {
-        return hookBrandMapper.fromDBtoBusiness(hooksDao.getHookBrand(id))
+    override suspend fun getHookBrand(id: Long): HookBrand = withContext(Dispatchers.IO) {
+        hookBrandMapper.fromDBtoBusiness(hooksDao.getHookBrand(id))
     }
 }
