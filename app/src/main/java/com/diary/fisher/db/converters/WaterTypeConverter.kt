@@ -1,8 +1,8 @@
 package com.diary.fisher.db.converters
 
 import androidx.room.TypeConverter
-import com.diary.fisher.db.models.WaterType
-import com.diary.fisher.db.models.WaterType.*
+import com.diary.fisher.core.models.water.WaterType
+import com.diary.fisher.core.models.water.WaterType.*
 
 class WaterTypeConverter {
 
