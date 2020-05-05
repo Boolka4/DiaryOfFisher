@@ -2,6 +2,7 @@ package com.diary.fisher.create_single_line_data.di
 
 import com.diary.fisher.core.models.common.SingleLineDataType
 import com.diary.fisher.create_single_line_data.business.CreateSingleLineDataUseCase
+import com.diary.fisher.create_single_line_data.business.CreateSingleLineFeedBoxBrand
 import com.diary.fisher.create_single_line_data.business.CreateSingleLineHookBrandDataUseCase
 import com.diary.fisher.create_single_line_data.presentation.view_model.CreateSingleLineDataViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -14,7 +15,7 @@ val singleLineDataModule = module {
 
         val createSingleLineDataUseCase: CreateSingleLineDataUseCase = when (singleLineDataType) {
             SingleLineDataType.HOOK_BRAND -> CreateSingleLineHookBrandDataUseCase(get())
-            SingleLineDataType.FEED_BOX_BRAND -> CreateSingleLineHookBrandDataUseCase(get())
+            SingleLineDataType.FEED_BOX_BRAND -> CreateSingleLineFeedBoxBrand(get())
         }
         CreateSingleLineDataViewModel(createSingleLineDataUseCase)
     }

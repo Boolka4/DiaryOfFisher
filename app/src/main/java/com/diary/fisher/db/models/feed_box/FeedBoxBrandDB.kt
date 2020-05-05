@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class FeederBoxBrandDB(
-    @PrimaryKey(autoGenerate = true) val feederBoxBrandId: Long = 0,
+class FeedBoxBrandDB(
+    @PrimaryKey(autoGenerate = true) val feedBoxBrandId: Long = 0,
     val brandName: String
 )

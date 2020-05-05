@@ -10,7 +10,7 @@ import com.diary.fisher.core.models.feed_box.FeedBoxMounting
 @Entity
 data class FeedBoxDB(
     @PrimaryKey(autoGenerate = true) val FeedBoxId: Long = 0,
-    val hookBrandId: Long,
+    val feedBoxBrandId: Long,
     val feedBoxForm: FeedBoxForm,
     val feedBoxMaterialType: FeedBoxMaterialType,
     val feedBoxHoleType: FeedBoxHoleType,

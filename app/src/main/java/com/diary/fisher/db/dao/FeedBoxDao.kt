@@ -4,18 +4,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.diary.fisher.db.models.feed_box.FeedBoxBrandDB
 import com.diary.fisher.db.models.feed_box.FeedBoxDB
-import com.diary.fisher.db.models.feed_box.FeederBoxBrandDB
-import com.diary.fisher.db.models.hook.HookBrandDB
 
 @Dao
 interface FeedBoxDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFeederBoxBrandDB(feederBoxBrandDB: FeederBoxBrandDB)
+    fun insertFeedBoxBrandDB(feedBoxBrandDB: FeedBoxBrandDB)
 
-    @Query("SELECT * FROM HookBrandDB")
-    fun getFeederBoxBrandsList(): List<FeederBoxBrandDB>
+    @Query("SELECT * FROM FeedBoxBrandDB")
+    fun getFeedBoxBrandsList(): List<FeedBoxBrandDB>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFeedBox(feedBox: FeedBoxDB)

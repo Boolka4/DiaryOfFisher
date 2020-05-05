@@ -70,7 +70,7 @@ class ReportsListFragment : BaseFragment() {
 //            viewModel.onReportAddClicked()
             findNavController().navigate(
                 R.id.action_reportsListFragment_to_createSingleLineDataDialogFragment,
-                CreateSingleLineDataDialogFragment.getBundle(SingleLineDataType.HOOK_BRAND)
+                CreateSingleLineDataDialogFragment.getBundle(SingleLineDataType.FEED_BOX_BRAND)
             )
         }
     }
