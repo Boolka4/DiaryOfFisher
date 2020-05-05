@@ -9,6 +9,10 @@
     <string name="no_waters_yet">У вас еще сохраненных водоемов, нажмите кнопку внизу для добавления</string>
     <string name="create_hook_brand_title">Введите название бренда</string>
 
+    <string name="create_feeder_box_brand_title">Введите название бренда</string>
+
+    <string name="select_hook_brand_title">Выберите название бренда</string>
+
     <string name="common_text_ok">Ок</string>
     <string name="common_text_save">Сохранить</string>
     <string name="common_text_cancel">Отмена</string>

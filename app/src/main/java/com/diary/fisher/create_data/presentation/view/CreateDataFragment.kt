@@ -5,6 +5,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
+import com.diary.fisher.core.models.common.CreateDataType
+import com.diary.fisher.core.models.common.SelectItemDataType
+import com.diary.fisher.core.models.common.SingleLineDataType
 import com.diary.fisher.core.ui.fragment.BaseFragment
 import com.diary.fisher.create_data.presentation.adapter.CreateDataAdapter
 import com.diary.fisher.create_data.presentation.view_model.CreateDataState
@@ -30,7 +33,6 @@ class CreateDataFragment : BaseFragment() {
                     rvCreateData.visibility = View.GONE
                     showProgress(true)
                 }
-
                 is CreateDataState.ShowItemsState -> {
                     showProgress(false)
                     rvCreateData.visibility = View.VISIBLE
@@ -38,10 +40,19 @@ class CreateDataFragment : BaseFragment() {
                     createDataAdapter.setItems(it.items)
                 }
             }
-
         }
 
         viewModel.getReportsLiveData().observe(viewLifecycleOwner, screenStateObserver)
         btnSaveData.setOnClickListener { viewModel.onSaveDataClicked() }
+    }
+
+    companion object {
+        private const val ARG_DATA_TYPE = "ARG_DATA_TYPE"
+
+        fun getBundle(createDataType: CreateDataType): Bundle {
+            val bundle = Bundle()
+            bundle.putParcelable(ARG_DATA_TYPE, createDataType)
+            return bundle
+        }
     }
 }

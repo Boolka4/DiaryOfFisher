@@ -6,6 +6,7 @@ import com.diary.fisher.create_single_line_data.di.singleLineDataModule
 import com.diary.fisher.db.di.dbModule
 import com.diary.fisher.reports_list.di.reportsListModule
 import com.diary.fisher.repository.di.repositoryModule
+import com.diary.fisher.select_item_dialog.di.createSingleItemModule
 import com.diary.fisher.waters_list.di.watersListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -23,6 +24,7 @@ class DiaryApplication : Application() {
             modules(reportsListModule)
             modules(createDataModule)
             modules(singleLineDataModule)
+            modules(createSingleItemModule)
         }
     }
 }

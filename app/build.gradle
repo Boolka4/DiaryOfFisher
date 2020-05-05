@@ -43,6 +43,7 @@ dependencies {
 
     // android supports
     implementation "com.google.android.material:material:$versions.materialVersion"
+    implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
 
     // architecture components

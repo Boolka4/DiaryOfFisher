@@ -2,6 +2,8 @@ package com.diary.fisher.reports_list.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,8 +65,9 @@ class ReportsListFragment : BaseFragment() {
         }
         viewModel.getReportsLiveData().observe(viewLifecycleOwner, screenStateObserver)
         viewModel.getNavigationLiveData().observe(viewLifecycleOwner, navigationObserver)
+
         fabAddReport.setOnClickListener {
-//            viewModel.onReportAddClicked()¬
+//            viewModel.onReportAddClicked()
             findNavController().navigate(
                 R.id.action_reportsListFragment_to_createSingleLineDataDialogFragment,
                 CreateSingleLineDataDialogFragment.getBundle(SingleLineDataType.HOOK_BRAND)

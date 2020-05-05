@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.diary.fisher.R
@@ -12,10 +13,13 @@ import com.diary.fisher.core.models.common.SingleLineDataType
 import com.diary.fisher.create_single_line_data.presentation.view_model.CreateSingleLineDataViewModel
 import kotlinx.android.synthetic.main.dialog_single_line_data.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
 
-    private val viewModel by viewModel<CreateSingleLineDataViewModel>()
+    private val viewModel by viewModel<CreateSingleLineDataViewModel> {
+        parametersOf(requireArguments().getParcelable<SingleLineDataType>(ARG_DATA_TYPE))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +30,12 @@ class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (arguments!!.getParcelable<SingleLineDataType>(ARG_DATA_TYPE)) {
+        when (requireArguments().getParcelable<SingleLineDataType>(ARG_DATA_TYPE)) {
             SingleLineDataType.HOOK_BRAND -> {
                 dialog!!.setTitle(R.string.create_hook_brand_title)
+            }
+            SingleLineDataType.FEED_BOX_BRAND -> {
+                dialog!!.setTitle(R.string.create_feeder_box_brand_title)
             }
         }
         etSingleData.requestFocus()
@@ -36,14 +43,14 @@ class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
         dialog?.setCanceledOnTouchOutside(false)
 
 
-        val screenStateObserver = Observer<Boolean> {
+        viewModel.getNavigationLiveData().observe(viewLifecycleOwner, Observer {
             findNavController().popBackStack()
-        }
-
-        viewModel.getStateLiveData().observe(viewLifecycleOwner, screenStateObserver)
+        })
 
         btnSave.setOnClickListener { viewModel.onSaveDataClicked(etSingleData.text.toString()) }
-        btnCancel.setOnClickListener { viewModel.onCancelClicked() }
+        btnCancel.setOnClickListener {
+            viewModel.onCancelClicked()
+        }
 
     }
 

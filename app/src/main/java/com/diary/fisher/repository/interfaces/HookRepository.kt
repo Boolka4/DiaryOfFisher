@@ -7,4 +7,6 @@ interface HookRepository {
     suspend fun insertHookBrand(hookBrand: HookBrand)
 
     suspend fun getHookBrand(id: Long): HookBrand
+
+    suspend fun getHooksBrandList(): List<HookBrand>
 }

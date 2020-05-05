@@ -14,4 +14,7 @@ interface HooksDao {
 
     @Query("SELECT * FROM HookBrandDB WHERE hookBrandId = :id")
     fun getHookBrand(id: Long): HookBrandDB
+
+    @Query("SELECT * FROM HookBrandDB")
+    fun getHookBrandsList(): List<HookBrandDB>
 }

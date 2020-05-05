@@ -27,13 +27,15 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
         return items.size
     }
 
+    protected fun getListItem(position: Int): ListItem {
+        return items[position]
+    }
+
     fun setItems(newItems: List<ListItem>) {
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
     }
 
-    private fun getListItem(position: Int): ListItem {
-        return items[position]
-    }
+
 }

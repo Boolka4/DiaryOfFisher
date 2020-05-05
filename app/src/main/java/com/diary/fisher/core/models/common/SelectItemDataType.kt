@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-enum class SingleLineDataType : Parcelable {
-    HOOK_BRAND, FEED_BOX_BRAND
+enum class SelectItemDataType : Parcelable {
+    HOOK_BRAND
 }
