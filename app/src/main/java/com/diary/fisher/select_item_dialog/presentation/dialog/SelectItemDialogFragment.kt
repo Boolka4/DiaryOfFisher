@@ -29,7 +29,7 @@ class SelectItemDialogFragment : AppCompatDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (arguments!!.getParcelable<SingleLineDataType>(ARG_DATA_TYPE)) {
+        when (requireArguments().getParcelable<SingleLineDataType>(ARG_DATA_TYPE)) {
             SingleLineDataType.HOOK_BRAND -> {
                 dialog!!.setTitle(R.string.create_hook_brand_title)
             }

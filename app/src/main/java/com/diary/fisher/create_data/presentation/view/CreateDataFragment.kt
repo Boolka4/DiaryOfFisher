@@ -12,12 +12,16 @@ import com.diary.fisher.core.ui.fragment.BaseFragment
 import com.diary.fisher.create_data.presentation.adapter.CreateDataAdapter
 import com.diary.fisher.create_data.presentation.view_model.CreateDataState
 import com.diary.fisher.create_data.presentation.view_model.CreateDataViewModel
+import com.diary.fisher.create_single_line_data.presentation.dialog.CreateSingleLineDataDialogFragment
 import kotlinx.android.synthetic.main.fragment_create_data.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CreateDataFragment : BaseFragment() {
 
-    private val viewModel by viewModel<CreateDataViewModel>()
+    private val viewModel by viewModel<CreateDataViewModel> {
+        parametersOf(requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE))
+    }
     private val createDataAdapter: CreateDataAdapter = CreateDataAdapter()
 
     override fun getLayoutId() = R.layout.fragment_create_data

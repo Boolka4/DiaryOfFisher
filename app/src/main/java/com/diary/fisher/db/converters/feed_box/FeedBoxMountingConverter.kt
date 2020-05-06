@@ -1,25 +1,25 @@
 package com.diary.fisher.db.converters.feed_box
 
 import androidx.room.TypeConverter
-import com.diary.fisher.core.models.feed_box.FeedBoxMounting
+import com.diary.fisher.core.models.feed_box.FeedBoxMountingType
 
 class FeedBoxMountingConverter {
 
     @TypeConverter
-    fun fromInt(value: Int): FeedBoxMounting {
+    fun fromInt(value: Int): FeedBoxMountingType {
         return when (value) {
-            0 -> FeedBoxMounting.DEFAULT
-            1 -> FeedBoxMounting.LINE
-            else -> FeedBoxMounting.IN_LINE
+            0 -> FeedBoxMountingType.DEFAULT
+            1 -> FeedBoxMountingType.LINE
+            else -> FeedBoxMountingType.IN_LINE
         }
     }
 
     @TypeConverter
-    fun fromEnum(feedBoxMounting: FeedBoxMounting): Int {
-        return when (feedBoxMounting) {
-            FeedBoxMounting.DEFAULT -> 0
-            FeedBoxMounting.LINE -> 1
-            FeedBoxMounting.IN_LINE -> 2
+    fun fromEnum(feedBoxMountingType: FeedBoxMountingType): Int {
+        return when (feedBoxMountingType) {
+            FeedBoxMountingType.DEFAULT -> 0
+            FeedBoxMountingType.LINE -> 1
+            FeedBoxMountingType.IN_LINE -> 2
         }
     }
 }

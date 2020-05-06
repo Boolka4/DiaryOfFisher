@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diary.fisher.core.ui.adapter.ListItem
+import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
 import kotlinx.coroutines.launch
 
 
@@ -31,5 +31,5 @@ sealed class CreateDataState {
 
     object ProgressState : CreateDataState()
 
-    data class ShowItemsState(val items: List<ListItem>) : CreateDataState()
+    data class ShowItemsState(val items: List<MultipleTypesViewItem>) : CreateDataState()
 }

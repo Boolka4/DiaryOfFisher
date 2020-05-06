@@ -13,7 +13,24 @@
 
     <string name="select_hook_brand_title">Выберите название бренда</string>
 
+    <string name="feed_box_form_default">Стандартная</string>
+    <string name="feed_box_form_duse">Дюза</string>
+    <string name="feed_box_form_bullet">Пуля</string>
+    <string name="feed_box_form_flat">Флет</string>
+
+    <string name="feed_box_material_type_metal">Металл</string>
+    <string name="feed_box_material_type_plastic">Пластик</string>
+
+    <string name="feed_box_hole_type_opened">Открытый</string>
+    <string name="feed_box_hole_type_medium">Стандартный</string>
+    <string name="feed_box_hole_type_closed">Закрытый</string>
+
+    <string name="feed_box_mounting_type_default">Стандартный</string>
+    <string name="feed_box_mounting_type_line">Леска</string>
+    <string name="feed_box_mounting_type_in_line">Внутренний</string>
+
     <string name="common_text_ok">Ок</string>
     <string name="common_text_save">Сохранить</string>
     <string name="common_text_cancel">Отмена</string>
+    <string name="common_text_comment">Комментарий</string>
 </resources>

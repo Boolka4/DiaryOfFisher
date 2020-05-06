@@ -12,7 +12,7 @@ abstract class BaseViewHolder<T : ListItem>(
     clickListener: ((T) -> Unit)? = null
 ) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layout, parent, false)) {
 
-    private lateinit var currentItem: T
+    protected lateinit var currentItem: T
 
     init {
         clickListener?.let { itemView.setOnClickListener { clickListener(currentItem) } }

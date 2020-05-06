@@ -9,6 +9,7 @@ import com.diary.fisher.repository.interfaces.HookRepository
 import com.diary.fisher.repository.interfaces.WaterRepository
 import com.diary.fisher.repository.mappers.feed_box.FeedBoxBrandMapper
 import com.diary.fisher.repository.mappers.hook.HookBrandMapper
+import com.diary.fisher.repository.resource.ResourceManager
 import org.koin.dsl.module
 
 
@@ -26,4 +27,6 @@ val repositoryModule = module {
     single<FeedBoxRepository> { FeedBoxRepositoryImpl(get<DiaryDatabase>().feedBoxDao(), get()) }
 
     single { FeedBoxBrandMapper() }
+
+    single { ResourceManager(get()) }
 }

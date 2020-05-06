@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.diary.fisher.core.models.feed_box.FeedBoxForm
 import com.diary.fisher.core.models.feed_box.FeedBoxHoleType
 import com.diary.fisher.core.models.feed_box.FeedBoxMaterialType
-import com.diary.fisher.core.models.feed_box.FeedBoxMounting
+import com.diary.fisher.core.models.feed_box.FeedBoxMountingType
 
 @Entity
 data class FeedBoxDB(
@@ -14,7 +14,7 @@ data class FeedBoxDB(
     val feedBoxForm: FeedBoxForm,
     val feedBoxMaterialType: FeedBoxMaterialType,
     val feedBoxHoleType: FeedBoxHoleType,
-    val feedBoxMounting: FeedBoxMounting,
+    val feedBoxMountingType: FeedBoxMountingType,
     val photoUrl: String,
     val comment: String
 )
