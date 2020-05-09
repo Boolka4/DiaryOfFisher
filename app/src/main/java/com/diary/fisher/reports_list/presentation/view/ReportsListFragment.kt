@@ -8,9 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
+import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.models.common.SingleLineDataType
 import com.diary.fisher.core.ui.dialog.LoadAnimationDialogFragment
 import com.diary.fisher.core.ui.fragment.BaseFragment
+import com.diary.fisher.create_data.presentation.view.CreateDataFragment
 import com.diary.fisher.create_single_line_data.presentation.dialog.CreateSingleLineDataDialogFragment
 import com.diary.fisher.reports_list.presentation.adapter.ReportsListAdapter
 import com.diary.fisher.reports_list.presentation.view_model.ReportsListState
@@ -68,9 +70,14 @@ class ReportsListFragment : BaseFragment() {
 
         fabAddReport.setOnClickListener {
 //            viewModel.onReportAddClicked()
+//            findNavController().navigate(
+//                R.id.action_reportsListFragment_to_createSingleLineDataDialogFragment,
+//                CreateSingleLineDataDialogFragment.getBundle(SingleLineDataType.FEED_BOX_BRAND)
+//            )
+
             findNavController().navigate(
-                R.id.action_reportsListFragment_to_createSingleLineDataDialogFragment,
-                CreateSingleLineDataDialogFragment.getBundle(SingleLineDataType.FEED_BOX_BRAND)
+                R.id.action_reportsListFragment_to_createDataFragment,
+                CreateDataFragment.getBundle(CreateDataType.FEED_BOX)
             )
         }
     }

@@ -13,6 +13,13 @@
 
     <string name="select_hook_brand_title">Выберите название бренда</string>
 
+    <string name="select_feed_box_brand_title">Выберите название бренда кормушки</string>
+    <string name="select_feed_box_brand_name_text">Нажмите для добавления бренда</string>
+    <string name="select_feed_box_form_text">Выберте форму кормушки</string>
+    <string name="select_feed_box_material_type">Выберте материал кормушки</string>
+    <string name="select_feed_box_hole_type">Выберите тип отверстий кормушки</string>
+    <string name="select_feed_box_mounting_type">Выберите тип крепления кормушки</string>
+
     <string name="feed_box_form_default">Стандартная</string>
     <string name="feed_box_form_duse">Дюза</string>
     <string name="feed_box_form_bullet">Пуля</string>

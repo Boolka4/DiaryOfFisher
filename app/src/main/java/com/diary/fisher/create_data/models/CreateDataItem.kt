@@ -28,14 +28,21 @@ sealed class CreateDataItem(
 
     data class SingleChoiceItem(
         val elementId: Long,
+        val groupId: Long,
         val text: String,
-        val isSelected: Boolean
+        var isSelected: Boolean
     ) : CreateDataItem(elementId, SINGLE_CHOICE_DATA_VIEW_TYPE)
+
+    data class InfoTextItem(
+        val elementId: Long,
+        val text: String
+    ) : CreateDataItem(elementId, INFO_TEXT_DATA_VIEW_TYPE)
 
     companion object {
         const val INPUT_FIELD_DATA_VIEW_TYPE = 1
         const val SELECT_DATA_DATA_VIEW_TYPE = 2
         const val SINGLE_CHOICE_DATA_VIEW_TYPE = 3
+        const val INFO_TEXT_DATA_VIEW_TYPE = 4
     }
 }
 

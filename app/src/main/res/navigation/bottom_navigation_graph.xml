@@ -24,6 +24,9 @@
             android:id="@+id/action_reportsListFragment_to_createSingleLineDataDialogFragment"
 
             app:destination="@id/createSingleLineDataDialogFragment" />
+        <action
+            android:id="@+id/action_reportsListFragment_to_createDataFragment"
+            app:destination="@id/createDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -45,4 +48,12 @@
             android:name="ARG_DATA_TYPE"
             app:argType="com.diary.fisher.core.models.common.SingleLineDataType" />
     </dialog>
+    <fragment
+        android:id="@+id/createDataFragment"
+        android:name="com.diary.fisher.create_data.presentation.view.CreateDataFragment"
+        android:label="CreateDataFragment" >
+        <argument
+            android:name="CreateDataType"
+            app:argType="com.diary.fisher.core.models.common.CreateDataType" />
+    </fragment>
 </navigation>

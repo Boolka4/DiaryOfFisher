@@ -22,7 +22,8 @@ class CreateDataFragment : BaseFragment() {
     private val viewModel by viewModel<CreateDataViewModel> {
         parametersOf(requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE))
     }
-    private val createDataAdapter: CreateDataAdapter = CreateDataAdapter()
+    private val createDataAdapter: CreateDataAdapter =
+        CreateDataAdapter { viewModel.onItemClicked(it) }
 
     override fun getLayoutId() = R.layout.fragment_create_data
 

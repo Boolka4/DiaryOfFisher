@@ -3,28 +3,32 @@ package com.diary.fisher.create_data.presentation.adapter
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
 import android.view.ViewGroup
 import com.diary.fisher.R
-import com.diary.fisher.core.ui.adapter.BaseAdapter
 import com.diary.fisher.core.ui.adapter.BaseViewHolder
 import com.diary.fisher.core.ui.adapter.MultipleTypesAdapter
 import com.diary.fisher.create_data.models.CreateDataItem
+import com.diary.fisher.create_data.models.CreateDataItem.Companion.INFO_TEXT_DATA_VIEW_TYPE
 import com.diary.fisher.create_data.models.CreateDataItem.Companion.INPUT_FIELD_DATA_VIEW_TYPE
 import com.diary.fisher.create_data.models.CreateDataItem.Companion.SELECT_DATA_DATA_VIEW_TYPE
+import com.diary.fisher.create_data.models.CreateDataItem.Companion.SINGLE_CHOICE_DATA_VIEW_TYPE
 import com.diary.fisher.create_data.models.InputFieldType
-import com.diary.fisher.report_add.models.ReportViewItem
+import kotlinx.android.synthetic.main.item_list_info_text.view.*
 import kotlinx.android.synthetic.main.item_list_input_field_data.view.*
+import kotlinx.android.synthetic.main.item_list_select_single_data.view.*
 import kotlinx.android.synthetic.main.item_list_single_choice.view.*
-import kotlinx.android.synthetic.main.item_list_water.view.*
+import java.lang.Exception
 
-class CreateDataAdapter() : MultipleTypesAdapter() {
+class CreateDataAdapter(private val clickListener: ((CreateDataItem) -> Unit)) :
+    MultipleTypesAdapter() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return when (viewType) {
             INPUT_FIELD_DATA_VIEW_TYPE -> InputFieldDataViewHolder(parent)
-            SELECT_DATA_DATA_VIEW_TYPE -> SelectDataViewHolder(parent)
-            else -> SingleChoiceViewHolder(parent)
+            SELECT_DATA_DATA_VIEW_TYPE -> SelectDataViewHolder(parent, clickListener)
+            SINGLE_CHOICE_DATA_VIEW_TYPE -> SingleChoiceViewHolder(parent, clickListener)
+            INFO_TEXT_DATA_VIEW_TYPE -> InfoTextViewHolder(parent)
+            else -> throw Exception("wrong view type")
         }
     }
 }
@@ -66,25 +70,46 @@ class InputFieldDataViewHolder constructor(
 }
 
 class SelectDataViewHolder constructor(
-    parent: ViewGroup
+    parent: ViewGroup,
+    clickListener: ((CreateDataItem) -> Unit)
 ) : BaseViewHolder<CreateDataItem.SelectDataItem>(
     parent,
     R.layout.item_list_select_single_data,
-    null
+    clickListener
 ) {
     override fun onBindElement(item: CreateDataItem.SelectDataItem) {
+        itemView.tvSelectDataText.text = item.text
     }
 }
 
 class SingleChoiceViewHolder constructor(
-    parent: ViewGroup
+    parent: ViewGroup,
+    clickListener: ((CreateDataItem) -> Unit)
 ) : BaseViewHolder<CreateDataItem.SingleChoiceItem>(
     parent,
     R.layout.item_list_single_choice,
     null
 ) {
+    init {
+        itemView.rbSingleChoice.setOnClickListener {
+            clickListener(currentItem)
+        }
+    }
+
     override fun onBindElement(item: CreateDataItem.SingleChoiceItem) {
         itemView.rbSingleChoice.text = item.text
-        itemView.rbSingleChoice.isSelected = item.isSelected
+        itemView.rbSingleChoice.isChecked = item.isSelected
+    }
+}
+
+class InfoTextViewHolder constructor(
+    parent: ViewGroup
+) : BaseViewHolder<CreateDataItem.InfoTextItem>(
+    parent,
+    R.layout.item_list_info_text,
+    null
+) {
+    override fun onBindElement(item: CreateDataItem.InfoTextItem) {
+        itemView.tvInfo.text = item.text
     }
 }

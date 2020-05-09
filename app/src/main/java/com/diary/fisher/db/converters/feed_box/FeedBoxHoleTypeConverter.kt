@@ -8,7 +8,7 @@ class FeedBoxHoleTypeConverter {
     @TypeConverter
     fun fromInt(value: Int): FeedBoxHoleType {
         return when (value) {
-            0 -> FeedBoxHoleType.OPEN
+            0 -> FeedBoxHoleType.OPENED
             1 -> FeedBoxHoleType.MEDIUM
             else -> FeedBoxHoleType.CLOSED
         }
@@ -17,7 +17,7 @@ class FeedBoxHoleTypeConverter {
     @TypeConverter
     fun fromEnum(feedBoxHoleType: FeedBoxHoleType): Int {
         return when (feedBoxHoleType) {
-            FeedBoxHoleType.OPEN -> 0
+            FeedBoxHoleType.OPENED -> 0
             FeedBoxHoleType.MEDIUM -> 1
             FeedBoxHoleType.CLOSED -> 2
         }
