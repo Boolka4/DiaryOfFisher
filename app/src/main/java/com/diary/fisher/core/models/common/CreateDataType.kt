@@ -5,5 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 enum class CreateDataType : Parcelable {
-    FEED_BOX, FEED_BOX_BRAND_NAME
+    FEED_BOX, FEED_BOX_BRAND_NAME, HOOK_BRAND
 }

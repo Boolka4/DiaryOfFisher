@@ -12,7 +12,7 @@ class HookRepositoryImpl(
     private val hookBrandMapper: HookBrandMapper
 ) : HookRepository {
 
-    override suspend fun insertHookBrand(hookBrand: HookBrand) = withContext(Dispatchers.IO) {
+    override suspend fun insertHookBrand(hookBrand: HookBrand): Long = withContext(Dispatchers.IO) {
         hooksDao.insertHookBrand(hookBrandMapper.fromBusinessToDB(hookBrand))
     }
 

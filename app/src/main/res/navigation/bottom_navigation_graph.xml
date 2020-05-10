@@ -46,7 +46,7 @@
         android:label="CreateSingleLineDataDialogFragment" >
         <argument
             android:name="ARG_DATA_TYPE"
-            app:argType="com.diary.fisher.core.models.common.SingleLineDataType" />
+            app:argType="com.diary.fisher.core.models.common.CreateDataType" />
     </dialog>
     <fragment
         android:id="@+id/createDataFragment"
@@ -55,5 +55,11 @@
         <argument
             android:name="CreateDataType"
             app:argType="com.diary.fisher.core.models.common.CreateDataType" />
+        <action
+            android:id="@+id/action_createDataFragment_self"
+            app:destination="@id/createDataFragment" />
+        <action
+            android:id="@+id/action_createDataFragment_to_createSingleLineDataDialogFragment"
+            app:destination="@id/createSingleLineDataDialogFragment" />
     </fragment>
 </navigation>

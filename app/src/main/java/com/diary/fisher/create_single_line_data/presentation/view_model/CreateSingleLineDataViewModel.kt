@@ -5,24 +5,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diary.fisher.core.live_data.SingleLiveEvent
-import com.diary.fisher.core.models.common.SingleLineDataType
+import com.diary.fisher.core.models.common.Constants.Companion.NOT_SELECTED_ITEM_ID
 import com.diary.fisher.create_single_line_data.business.CreateSingleLineDataUseCase
-import com.diary.fisher.create_single_line_data.business.CreateSingleLineHookBrandDataUseCase
 import kotlinx.coroutines.launch
 
-class CreateSingleLineDataViewModel(private val createSingleLineDataUseCase: CreateSingleLineDataUseCase) : ViewModel() {
+class CreateSingleLineDataViewModel(private val createSingleLineDataUseCase: CreateSingleLineDataUseCase) :
+    ViewModel() {
 
-    private val navigationLiveData: MutableLiveData<Unit> = SingleLiveEvent()
-    fun getNavigationLiveData(): LiveData<Unit> = navigationLiveData
+    private val navigationLiveData: MutableLiveData<Long> = SingleLiveEvent()
+
+    fun getNavigationLiveData(): LiveData<Long> = navigationLiveData
 
     fun onSaveDataClicked(text: String) {
         viewModelScope.launch {
-            createSingleLineDataUseCase.createSingleLineData(text)
-            navigationLiveData.value = Unit
+            navigationLiveData.value = createSingleLineDataUseCase.createSingleLineData(text)
         }
     }
 
     fun onCancelClicked() {
-        navigationLiveData.value = Unit
+        navigationLiveData.value = NOT_SELECTED_ITEM_ID
     }
 }

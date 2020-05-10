@@ -18,6 +18,11 @@ class FeedBoxRepositoryImpl(
             feedBoxDao.insertFeedBoxBrandDB(feedBoxBrandMapper.fromBusinessToDB(feedBoxBrand))
         }
 
+    override suspend fun getFeedBoxBrandById(id: Long) =
+        withContext(Dispatchers.IO) {
+            feedBoxBrandMapper.fromDBtoBusiness(feedBoxDao.getFeedBoxBrandDB(id))
+        }
+
     override suspend fun getFeedBoxBrandsList(): List<FeedBoxBrand> =
         withContext(Dispatchers.IO) {
             feedBoxDao.getFeedBoxBrandsList().map { feedBoxBrandMapper.fromDBtoBusiness(it) }

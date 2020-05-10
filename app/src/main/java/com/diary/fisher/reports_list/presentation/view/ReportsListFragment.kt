@@ -2,23 +2,17 @@ package com.diary.fisher.reports_list.presentation.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
 import com.diary.fisher.core.models.common.CreateDataType
-import com.diary.fisher.core.models.common.SingleLineDataType
-import com.diary.fisher.core.ui.dialog.LoadAnimationDialogFragment
 import com.diary.fisher.core.ui.fragment.BaseFragment
 import com.diary.fisher.create_data.presentation.view.CreateDataFragment
-import com.diary.fisher.create_single_line_data.presentation.dialog.CreateSingleLineDataDialogFragment
 import com.diary.fisher.reports_list.presentation.adapter.ReportsListAdapter
 import com.diary.fisher.reports_list.presentation.view_model.ReportsListState
 import com.diary.fisher.reports_list.presentation.view_model.ReportsListViewModel
 import com.diary.fisher.reports_list.presentation.view_model.ReportsNavigationState
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_reports_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

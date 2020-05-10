@@ -11,7 +11,10 @@ import com.diary.fisher.db.models.feed_box.FeedBoxDB
 interface FeedBoxDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFeedBoxBrandDB(feedBoxBrandDB: FeedBoxBrandDB)
+    fun insertFeedBoxBrandDB(feedBoxBrandDB: FeedBoxBrandDB): Long
+
+    @Query("SELECT * FROM FeedBoxBrandDB WHERE feedBoxBrandId = :id")
+    fun getFeedBoxBrandDB(id: Long): FeedBoxBrandDB
 
     @Query("SELECT * FROM FeedBoxBrandDB")
     fun getFeedBoxBrandsList(): List<FeedBoxBrandDB>

@@ -1,9 +1,10 @@
 package com.diary.fisher.create_data.models
 
+import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
 
 sealed class CreateDataItem(
-    private val listItemId: Long,
+    val listItemId: Long,
     private val viewType: Int
 ) : MultipleTypesViewItem {
 
@@ -21,9 +22,10 @@ sealed class CreateDataItem(
 
     data class SelectDataItem(
         val elementId: Long,
-        val selectedItemId: Long,
+        var selectedItemId: Long,
+        val createDataType: CreateDataType,
         val isMandatory: Boolean,
-        val text: String
+        var text: String
     ) : CreateDataItem(elementId, SELECT_DATA_DATA_VIEW_TYPE)
 
     data class SingleChoiceItem(

@@ -19,12 +19,15 @@ import kotlinx.android.synthetic.main.item_list_select_single_data.view.*
 import kotlinx.android.synthetic.main.item_list_single_choice.view.*
 import java.lang.Exception
 
-class CreateDataAdapter(private val clickListener: ((CreateDataItem) -> Unit)) :
+class CreateDataAdapter(
+    private val clickListener: ((CreateDataItem) -> Unit),
+    private val inputTextListener: ((CreateDataItem.InputFieldDataItem, String) -> Unit)
+) :
     MultipleTypesAdapter() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return when (viewType) {
-            INPUT_FIELD_DATA_VIEW_TYPE -> InputFieldDataViewHolder(parent)
+            INPUT_FIELD_DATA_VIEW_TYPE -> InputFieldDataViewHolder(parent, inputTextListener)
             SELECT_DATA_DATA_VIEW_TYPE -> SelectDataViewHolder(parent, clickListener)
             SINGLE_CHOICE_DATA_VIEW_TYPE -> SingleChoiceViewHolder(parent, clickListener)
             INFO_TEXT_DATA_VIEW_TYPE -> InfoTextViewHolder(parent)
@@ -34,7 +37,8 @@ class CreateDataAdapter(private val clickListener: ((CreateDataItem) -> Unit)) :
 }
 
 class InputFieldDataViewHolder constructor(
-    parent: ViewGroup
+    parent: ViewGroup,
+    private val inputTextListener: ((CreateDataItem.InputFieldDataItem, String) -> Unit)
 ) : BaseViewHolder<CreateDataItem.InputFieldDataItem>(
     parent,
     R.layout.item_list_input_field_data,
@@ -51,7 +55,7 @@ class InputFieldDataViewHolder constructor(
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            currentItem.currentValue = s?.toString() ?: ""
+            inputTextListener(currentItem, s?.toString() ?: "")
         }
     }
 

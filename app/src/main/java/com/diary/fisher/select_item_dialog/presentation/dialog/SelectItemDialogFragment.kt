@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
+import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.models.common.SelectItemDataType
-import com.diary.fisher.core.models.common.SingleLineDataType
 import com.diary.fisher.select_item_dialog.presentation.adapter.SelectSingleItemAdapter
 import com.diary.fisher.select_item_dialog.presentation.view_model.SelectSingleItemState
 import com.diary.fisher.select_item_dialog.presentation.view_model.SelectSingleItemViewModel
@@ -29,8 +29,8 @@ class SelectItemDialogFragment : AppCompatDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (requireArguments().getParcelable<SingleLineDataType>(ARG_DATA_TYPE)) {
-            SingleLineDataType.HOOK_BRAND -> {
+        when (requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE)) {
+            CreateDataType.HOOK_BRAND -> {
                 dialog!!.setTitle(R.string.create_hook_brand_title)
             }
         }

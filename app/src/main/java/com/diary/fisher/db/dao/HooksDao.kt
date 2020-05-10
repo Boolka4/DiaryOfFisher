@@ -10,7 +10,7 @@ import com.diary.fisher.db.models.hook.HookBrandDB
 interface HooksDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHookBrand(hookBrand: HookBrandDB)
+    fun insertHookBrand(hookBrand: HookBrandDB): Long
 
     @Query("SELECT * FROM HookBrandDB WHERE hookBrandId = :id")
     fun getHookBrand(id: Long): HookBrandDB

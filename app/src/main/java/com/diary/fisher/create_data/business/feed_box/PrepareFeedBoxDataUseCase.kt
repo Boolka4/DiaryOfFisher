@@ -1,7 +1,10 @@
 package com.diary.fisher.create_data.business.feed_box
 
+import com.diary.fisher.core.models.common.Constants
+import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.models.feed_box.*
 import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
+import com.diary.fisher.create_data.business.BasePrepareDataUseCase
 import com.diary.fisher.create_data.business.PrepareDataUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
 import com.diary.fisher.create_data.models.InputFieldType
@@ -10,13 +13,12 @@ import com.diary.fisher.create_data.rep.FeedBoxStringsProvider
 import com.diary.fisher.repository.interfaces.FeedBoxRepository
 
 class PrepareFeedBoxDataUseCase(
+    createDataItemsHolder: CreateDataItemsHolder,
     private val feedBoxRepository: FeedBoxRepository,
-    private val feedBoxStringsProvider: FeedBoxStringsProvider,
-    private val createDataItemsHolder: CreateDataItemsHolder
-) :
-    PrepareDataUseCase {
+    private val feedBoxStringsProvider: FeedBoxStringsProvider
+) : BasePrepareDataUseCase(createDataItemsHolder) {
 
-    override suspend fun getItemsList(): List<MultipleTypesViewItem> {
+    override suspend fun generateItemsList(): List<CreateDataItem> {
         val itemsList = mutableListOf<CreateDataItem>()
         getFeedBoxBrandItems(itemsList)
         getFeedBoxFormItems(itemsList)
@@ -24,7 +26,6 @@ class PrepareFeedBoxDataUseCase(
         getFeedBoxHoleTypeItems(itemsList)
         getFeedBoxMountingType(itemsList)
         getCommentItem(itemsList)
-        createDataItemsHolder.crateDataList = itemsList
         return itemsList
     }
 
@@ -39,10 +40,11 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SelectDataItem(
                 elementId = 1,
-                selectedItemId = defaultSelectedBrand?.id ?: -1,
+                selectedItemId = defaultSelectedBrand?.id ?: Constants.NOT_SELECTED_ITEM_ID,
                 isMandatory = false,
                 text = defaultSelectedBrand?.brandName
-                    ?: feedBoxStringsProvider.getDefaultBrandNameText()
+                    ?: feedBoxStringsProvider.getDefaultBrandNameText(),
+                createDataType = CreateDataType.FEED_BOX_BRAND_NAME
             )
         )
     }
