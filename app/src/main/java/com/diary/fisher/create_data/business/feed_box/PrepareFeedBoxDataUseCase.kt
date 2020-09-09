@@ -3,9 +3,7 @@ package com.diary.fisher.create_data.business.feed_box
 import com.diary.fisher.core.models.common.Constants
 import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.models.feed_box.*
-import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
 import com.diary.fisher.create_data.business.BasePrepareDataUseCase
-import com.diary.fisher.create_data.business.PrepareDataUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
 import com.diary.fisher.create_data.models.InputFieldType
 import com.diary.fisher.create_data.rep.CreateDataItemsHolder
@@ -50,7 +48,7 @@ class PrepareFeedBoxDataUseCase(
     }
 
     private fun getFeedBoxFormItems(itemsList: MutableList<CreateDataItem>) {
-        val currentCroupId: Long = 2
+        val currentGroupId: Long = 2
         itemsList.add(
             CreateDataItem.InfoTextItem(
                 elementId = 2,
@@ -60,7 +58,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 3,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxNameByType(FeedBoxForm.DEFAULT),
                 isSelected = true
             )
@@ -68,7 +66,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 4,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxNameByType(FeedBoxForm.DUSE),
                 isSelected = false
             )
@@ -76,7 +74,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 5,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxNameByType(FeedBoxForm.BULLET),
                 isSelected = false
             )
@@ -84,7 +82,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 6,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxNameByType(FeedBoxForm.FLAT),
                 isSelected = false
             )
@@ -92,7 +90,7 @@ class PrepareFeedBoxDataUseCase(
     }
 
     private fun getFeedBoxMaterialTypeItems(itemsList: MutableList<CreateDataItem>) {
-        val currentCroupId: Long = 3
+        val currentGroupId: Long = 3
 
         itemsList.add(
             CreateDataItem.InfoTextItem(
@@ -103,7 +101,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 8,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxMaterialNameByType(FeedBoxMaterialType.METAL),
                 isSelected = true
             )
@@ -111,7 +109,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 9,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxMaterialNameByType(FeedBoxMaterialType.PLASTIC),
                 isSelected = false
             )
@@ -119,7 +117,7 @@ class PrepareFeedBoxDataUseCase(
     }
 
     private fun getFeedBoxHoleTypeItems(itemsList: MutableList<CreateDataItem>) {
-        val currentCroupId: Long = 4
+        val currentGroupId: Long = 4
 
         itemsList.add(
             CreateDataItem.InfoTextItem(
@@ -130,7 +128,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 11,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxHoleNameByType(FeedBoxHoleType.OPENED),
                 isSelected = true
             )
@@ -138,7 +136,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 12,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxHoleNameByType(FeedBoxHoleType.MEDIUM),
                 isSelected = false
             )
@@ -146,7 +144,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 13,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxHoleNameByType(FeedBoxHoleType.CLOSED),
                 isSelected = false
             )
@@ -154,7 +152,7 @@ class PrepareFeedBoxDataUseCase(
     }
 
     private fun getFeedBoxMountingType(itemsList: MutableList<CreateDataItem>) {
-        val currentCroupId: Long = 5
+        val currentGroupId: Long = 5
 
         itemsList.add(
             CreateDataItem.InfoTextItem(
@@ -165,7 +163,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 15,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxMountingNameByType(FeedBoxMountingType.DEFAULT),
                 isSelected = true
             )
@@ -173,7 +171,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 16,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxMountingNameByType(FeedBoxMountingType.LINE),
                 isSelected = false
             )
@@ -181,7 +179,7 @@ class PrepareFeedBoxDataUseCase(
         itemsList.add(
             CreateDataItem.SingleChoiceItem(
                 elementId = 17,
-                groupId = currentCroupId,
+                groupId = currentGroupId,
                 text = feedBoxStringsProvider.getFeedBoxMountingNameByType(FeedBoxMountingType.IN_LINE),
                 isSelected = false
             )

@@ -77,6 +77,21 @@ class CreateDataFragment : BaseFragment() {
                     )
                 }
                 NavigationDestinationType.SCREEN -> {
+                    setFragmentResultListener(it.createDataType.name) { key, bundle ->
+                        viewModel.onCreateDataResult(
+                            bundle.getLong(ARG_CREATE_DATA_ELEMENT_ID),
+                            bundle.getLong(ARG_CREATE_DATA_RESULT_ITEM)
+                        )
+                    }
+
+                    findNavController().navigate(
+                        R.id.action_createDataFragment_self,
+                        CreateSingleLineDataDialogFragment.getBundle(
+                            CreateDataType.FEED_BOX_BRAND_NAME,
+                            it.createDataType.name,
+                            it.elementId
+                        )
+                    )
                 }
             }
         }

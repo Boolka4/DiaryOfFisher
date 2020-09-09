@@ -36,8 +36,19 @@
     <string name="feed_box_mounting_type_line">Леска</string>
     <string name="feed_box_mounting_type_in_line">Внутренний</string>
 
+    <string name="flat_cast_select_direction">Направление: %1$s</string>
+    <string name="flat_cast_select_bite">Насадка: </string>
+    <string name="flat_cast_select_dip">Дип: %1$s</string>
+    <string name="flat_cast_select_feed">Корм: %1$s</string>
+    <string name="flat_cast_select_hook">Крюк: %1$s</string>
+    <string name="flat_cast_select_line_width">Длина поводка: </string>
+    <string name="flat_cast_select_mounting">Монтаж: %1$s</string>
+
     <string name="common_text_ok">Ок</string>
     <string name="common_text_save">Сохранить</string>
     <string name="common_text_cancel">Отмена</string>
     <string name="common_text_comment">Комментарий</string>
+    <string name="common_select_rod">Выберите удилище:</string>
+    <string name="common_select_time">Время: %1$s</string>
+    <string name="common_select_distance">Выберите дистанцию:</string>
 </resources>

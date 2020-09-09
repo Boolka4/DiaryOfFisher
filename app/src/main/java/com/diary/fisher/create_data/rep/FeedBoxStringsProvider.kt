@@ -10,30 +10,20 @@ import com.diary.fisher.repository.resource.ResourceManager
 
 class FeedBoxStringsProvider(private val resourceManager: ResourceManager) {
 
-    fun getBrandNameInfoText(): String {
-        return resourceManager.getString(R.string.select_feed_box_brand_title)
-    }
+    fun getBrandNameInfoText() = resourceManager.getString(R.string.select_feed_box_brand_title)
 
-    fun getDefaultBrandNameText(): String {
-        return resourceManager.getString(R.string.select_feed_box_brand_name_text)
-    }
+    fun getDefaultBrandNameText() =
+        resourceManager.getString(R.string.select_feed_box_brand_name_text)
 
-    fun getFeedBoxFormInfoText(): String {
-        return resourceManager.getString(R.string.select_feed_box_form_text)
-    }
+    fun getFeedBoxFormInfoText() = resourceManager.getString(R.string.select_feed_box_form_text)
 
-    fun getFeedBoxMaterialTypeInfoText(): String {
-        return resourceManager.getString(R.string.select_feed_box_material_type)
-    }
+    fun getFeedBoxMaterialTypeInfoText() =
+        resourceManager.getString(R.string.select_feed_box_material_type)
 
-    fun getFeedBoxHoleTypeInfoText(): String {
-        return resourceManager.getString(R.string.select_feed_box_hole_type)
-    }
+    fun getFeedBoxHoleTypeInfoText() = resourceManager.getString(R.string.select_feed_box_hole_type)
 
-    fun getFeedBoxMountingTypeInfoText(): String {
-        return resourceManager.getString(R.string.select_feed_box_hole_type)
-    }
-
+    fun getFeedBoxMountingTypeInfoText() =
+        resourceManager.getString(R.string.select_feed_box_hole_type)
 
     fun getFeedBoxNameByType(feedBoxForm: FeedBoxForm): String {
         return when (feedBoxForm) {
