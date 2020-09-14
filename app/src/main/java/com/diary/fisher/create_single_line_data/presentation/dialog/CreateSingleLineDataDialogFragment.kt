@@ -18,7 +18,10 @@ import org.koin.core.parameter.parametersOf
 class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
 
     private val viewModel by viewModel<CreateSingleLineDataViewModel> {
-        parametersOf(requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE))
+        parametersOf(
+            requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE),
+            requireArguments().getLong(ARG_ELEMENT_ID_KEY)
+        )
     }
 
     override fun onCreateView(
@@ -30,18 +33,14 @@ class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (requireArguments().getParcelable<CreateDataType>(ARG_DATA_TYPE)) {
-            CreateDataType.HOOK_BRAND -> {
-                dialog!!.setTitle(R.string.create_hook_brand_title)
-            }
-            CreateDataType.FEED_BOX_BRAND_NAME -> {
-                dialog!!.setTitle(R.string.create_feeder_box_brand_title)
-            }
-        }
-        etSingleData.requestFocus()
+        dialog!!.setTitle(requireArguments().getString(ARG_DIALOG_TITLE))
         isCancelable = false
         dialog?.setCanceledOnTouchOutside(false)
 
+        viewModel.getDefaultTextLiveData().observe(viewLifecycleOwner, Observer { text ->
+            etSingleData.setText(text)
+            etSingleData.requestFocus()
+        })
         viewModel.getNavigationLiveData().observe(viewLifecycleOwner, Observer { itemId ->
             findNavController().popBackStack()
             setFragmentResult(requireArguments().getString(ARG_RESULT_KEY)!!, Bundle().apply {
@@ -61,16 +60,19 @@ class CreateSingleLineDataDialogFragment : AppCompatDialogFragment() {
 
         private const val ARG_DATA_TYPE = "ARG_DATA_TYPE"
         private const val ARG_RESULT_KEY = "ARG_RESULT_KEY"
+        private const val ARG_DIALOG_TITLE = "ARG_DIALOG_TITLE"
         private const val ARG_ELEMENT_ID_KEY = "ARG_ELEMENT_ID_KEY"
 
         fun getBundle(
             createDataType: CreateDataType,
             resultKey: String,
+            dialogTitle: String,
             elementId: Long
         ): Bundle {
             val bundle = Bundle()
             bundle.putParcelable(ARG_DATA_TYPE, createDataType)
             bundle.putString(ARG_RESULT_KEY, resultKey)
+            bundle.putString(ARG_DIALOG_TITLE, dialogTitle)
             bundle.putLong(ARG_ELEMENT_ID_KEY, elementId)
             return bundle
         }

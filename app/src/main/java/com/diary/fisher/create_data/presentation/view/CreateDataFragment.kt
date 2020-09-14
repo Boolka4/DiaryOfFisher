@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
 import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.ui.fragment.BaseFragment
-import com.diary.fisher.create_data.models.NavigationDestinationType
 import com.diary.fisher.create_data.models.ProcessCreateItemClickResult
 import com.diary.fisher.create_data.presentation.adapter.CreateDataAdapter
 import com.diary.fisher.create_data.presentation.view_model.CreateDataState
@@ -29,8 +28,9 @@ class CreateDataFragment : BaseFragment() {
     }
     private val createDataAdapter: CreateDataAdapter =
         CreateDataAdapter(
-            { viewModel.onItemClicked(it) },
-            { item, text -> viewModel.onInputTextChanged(item, text) })
+            clickListener = { viewModel.onItemClicked(it) },
+            longClickListener = { viewModel.onItemLongClicked(it) },
+            inputTextListener = { item, text -> viewModel.onInputTextChanged(item, text) })
 
     override fun getLayoutId() = R.layout.fragment_create_data
 
@@ -75,48 +75,49 @@ class CreateDataFragment : BaseFragment() {
             }
         }
 
-        val navigationObserver = Observer<ProcessCreateItemClickResult.Navigation> {
-            when (it.navigationDestination) {
-                NavigationDestinationType.DIALOG -> {
-                    setFragmentResultListener(it.createDataType.name) { key, bundle ->
-                        viewModel.onCreateDataResult(
-                            bundle.getLong(ARG_CREATE_DATA_ELEMENT_ID),
-                            bundle.getLong(ARG_CREATE_DATA_RESULT_ITEM)
-                        )
-                    }
-
-                    findNavController().navigate(
-                        R.id.action_createDataFragment_to_createSingleLineDataDialogFragment,
-                        CreateSingleLineDataDialogFragment.getBundle(
-                            it.createDataType,
-                            it.createDataType.name,
-                            it.elementId
-                        )
-                    )
-                }
-                NavigationDestinationType.SCREEN -> {
-                    setFragmentResultListener(it.createDataType.name) { key, bundle ->
-                        viewModel.onCreateDataResult(
-                            bundle.getLong(ARG_CREATE_DATA_ELEMENT_ID),
-                            bundle.getLong(ARG_CREATE_DATA_RESULT_ITEM)
-                        )
-                    }
-
-                    findNavController().navigate(
-                        R.id.action_createDataFragment_self,
-                        getBundle(
-                            createDataType = it.createDataType,
-                            canBeSaved = it.canBeSaved,
-                            canBeAdded = it.canBeAdded,
-                            useDividerDecorator = it.useDividerDecorator
-                        )
-                    )
-                }
+        val navigationScreenObserver = Observer<ProcessCreateItemClickResult.NavigationScreen> {
+            setFragmentResultListener(it.createDataType.name) { key, bundle ->
+                viewModel.onCreateDataResult(
+                    bundle.getLong(ARG_CREATE_DATA_ELEMENT_ID),
+                    bundle.getLong(ARG_CREATE_DATA_RESULT_ITEM)
+                )
             }
+
+            findNavController().navigate(
+                R.id.action_createDataFragment_self,
+                getBundle(
+                    createDataType = it.createDataType,
+                    canBeSaved = it.canBeSaved,
+                    canBeAdded = it.canBeAdded,
+                    useDividerDecorator = it.useDividerDecorator
+                )
+            )
+        }
+
+        val navigationDialogObserver = Observer<ProcessCreateItemClickResult.NavigationDialog> {
+            setFragmentResultListener(it.createDataType.name) { key, bundle ->
+                viewModel.onCreateDataResult(
+                    bundle.getLong(ARG_CREATE_DATA_ELEMENT_ID),
+                    bundle.getLong(ARG_CREATE_DATA_RESULT_ITEM)
+                )
+            }
+
+            findNavController().navigate(
+                R.id.action_createDataFragment_to_createSingleLineDataDialogFragment,
+                CreateSingleLineDataDialogFragment.getBundle(
+                    createDataType = it.createDataType,
+                    resultKey = it.createDataType.name,
+                    dialogTitle = it.dialogTitle,
+                    elementId = it.elementId
+                )
+            )
         }
 
         viewModel.getReportsLiveData().observe(viewLifecycleOwner, screenStateObserver)
-        viewModel.getNavigationLiveData().observe(viewLifecycleOwner, navigationObserver)
+        viewModel.getScreenNavigationLiveData()
+            .observe(viewLifecycleOwner, navigationScreenObserver)
+        viewModel.getDialogNavigationLiveData()
+            .observe(viewLifecycleOwner, navigationDialogObserver)
 
         btnSaveData.setOnClickListener { viewModel.onSaveDataClicked() }
         fabAddData.setOnClickListener { viewModel.onAddDataClicked() }

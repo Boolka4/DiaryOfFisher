@@ -10,6 +10,7 @@ import com.diary.fisher.create_data.business.rod_list.AddRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.PrepareRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.ProcessRodsListUseCase
 import com.diary.fisher.create_data.presentation.view_model.CreateDataViewModel
+import com.diary.fisher.create_data.rep.AddRodsStringsProvider
 import com.diary.fisher.create_data.rep.AllSettingsListStringsProvider
 import com.diary.fisher.create_data.rep.CreateDataItemsHolder
 import com.diary.fisher.create_data.rep.FeedBoxStringsProvider
@@ -29,7 +30,7 @@ val createDataModule = module {
             CreateDataType.FEED_BOX -> ProcessFeedBoxUseCase(get(), get())
             CreateDataType.FEED_BOX_BRAND_NAME -> ProcessFeedBoxUseCase(get(), get())
             CreateDataType.ALL_SETTINGS_LIST -> ProcessAllSettingsListUseCase()
-            CreateDataType.RODS_LIST -> ProcessRodsListUseCase()
+            CreateDataType.RODS_LIST -> ProcessRodsListUseCase(get())
             else -> TODO()
         }
         val createDataUseCase = when (createDataType) {
@@ -37,7 +38,7 @@ val createDataModule = module {
         }
 
         val addDataUseCase = when (createDataType) {
-            CreateDataType.RODS_LIST -> AddRodsListUseCase()
+            CreateDataType.RODS_LIST -> AddRodsListUseCase(get())
             else -> null
         }
         CreateDataViewModel(
@@ -51,5 +52,6 @@ val createDataModule = module {
 
     factory { AllSettingsListStringsProvider(get()) }
 
+    factory { AddRodsStringsProvider(get()) }
     single { CreateDataItemsHolder() }
 }

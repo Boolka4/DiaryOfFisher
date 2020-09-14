@@ -21,6 +21,7 @@ import java.lang.Exception
 
 class CreateDataAdapter(
     private val clickListener: ((CreateDataItem) -> Unit),
+    private val longClickListener: ((CreateDataItem) -> Unit),
     private val inputTextListener: ((CreateDataItem.InputFieldDataItem, String) -> Unit)
 ) :
     MultipleTypesAdapter() {
@@ -28,7 +29,11 @@ class CreateDataAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return when (viewType) {
             INPUT_FIELD_DATA_VIEW_TYPE -> InputFieldDataViewHolder(parent, inputTextListener)
-            SELECT_DATA_DATA_VIEW_TYPE -> SelectDataViewHolder(parent, clickListener)
+            SELECT_DATA_DATA_VIEW_TYPE -> SelectDataViewHolder(
+                parent,
+                clickListener,
+                longClickListener
+            )
             SINGLE_CHOICE_DATA_VIEW_TYPE -> SingleChoiceViewHolder(parent, clickListener)
             INFO_TEXT_DATA_VIEW_TYPE -> InfoTextViewHolder(parent)
             else -> throw Exception("wrong view type")
@@ -75,11 +80,13 @@ class InputFieldDataViewHolder constructor(
 
 class SelectDataViewHolder constructor(
     parent: ViewGroup,
-    clickListener: ((CreateDataItem) -> Unit)
+    clickListener: ((CreateDataItem) -> Unit),
+    longClickListener: ((CreateDataItem) -> Unit)
 ) : BaseViewHolder<CreateDataItem.SelectDataItem>(
     parent,
     R.layout.item_list_select_single_data,
-    clickListener
+    clickListener,
+    longClickListener
 ) {
     override fun onBindElement(item: CreateDataItem.SelectDataItem) {
         itemView.tvSelectDataText.text = item.text

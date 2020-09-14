@@ -9,12 +9,22 @@ import com.diary.fisher.core.models.common.Constants.Companion.NOT_SELECTED_ITEM
 import com.diary.fisher.create_single_line_data.business.CreateSingleLineDataUseCase
 import kotlinx.coroutines.launch
 
-class CreateSingleLineDataViewModel(private val createSingleLineDataUseCase: CreateSingleLineDataUseCase) :
-    ViewModel() {
+class CreateSingleLineDataViewModel(
+    private val createSingleLineDataUseCase: CreateSingleLineDataUseCase
+) : ViewModel() {
 
     private val navigationLiveData: MutableLiveData<Long> = SingleLiveEvent()
+    private val defaultTextLiveData: MutableLiveData<String> = SingleLiveEvent()
+
+    init {
+        viewModelScope.launch {
+            defaultTextLiveData.value = createSingleLineDataUseCase.getDefaultText()
+        }
+    }
 
     fun getNavigationLiveData(): LiveData<Long> = navigationLiveData
+
+    fun getDefaultTextLiveData(): LiveData<String> = defaultTextLiveData
 
     fun onSaveDataClicked(text: String) {
         viewModelScope.launch {

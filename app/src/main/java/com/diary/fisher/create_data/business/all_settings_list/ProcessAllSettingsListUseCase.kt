@@ -4,17 +4,16 @@ import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
 import com.diary.fisher.create_data.business.ProcessCreateItemsUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
-import com.diary.fisher.create_data.models.NavigationDestinationType
 import com.diary.fisher.create_data.models.ProcessCreateItemClickResult
 
 class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
-    override fun processCreateItems(createDataItem: CreateDataItem): ProcessCreateItemClickResult {
+
+    override fun processItemClick(createDataItem: CreateDataItem): ProcessCreateItemClickResult {
 
         return when ((createDataItem as CreateDataItem.SelectDataItem).createDataType) {
             CreateDataType.RODS_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = true,
                     useDividerDecorator = true,
@@ -22,9 +21,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.DIRECTIONS_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.DIRECTIONS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -32,9 +30,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.BITES_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -42,9 +39,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.DIPS_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -52,9 +48,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.FEEDS_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -62,9 +57,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.HOOK_PROTOTYPES_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -72,9 +66,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 )
             }
             CreateDataType.MOUNTINGS_LIST -> {
-                ProcessCreateItemClickResult.Navigation(
+                ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.RODS_LIST,
-                    navigationDestination = NavigationDestinationType.SCREEN,
                     canBeSaved = false,
                     canBeAdded = false,
                     useDividerDecorator = false,
@@ -92,12 +85,5 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
         createDataItem: CreateDataItem.InputFieldDataItem,
         text: String
     ) {
-    }
-
-    override suspend fun processCreateDataResult(
-        elementId: Long,
-        resultId: Long
-    ): List<MultipleTypesViewItem> {
-        return emptyList()
     }
 }

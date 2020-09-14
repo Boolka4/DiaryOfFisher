@@ -9,13 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseViewHolder<T : ListItem>(
     parent: ViewGroup,
     @LayoutRes layout: Int,
-    clickListener: ((T) -> Unit)? = null
+    clickListener: ((T) -> Unit)? = null,
+    longClickListener: ((T) -> Unit)? = null
 ) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layout, parent, false)) {
 
     protected lateinit var currentItem: T
 
     init {
         clickListener?.let { itemView.setOnClickListener { clickListener(currentItem) } }
+        longClickListener?.let {
+            itemView.setOnLongClickListener {
+                longClickListener(currentItem)
+                return@setOnLongClickListener true
+            }
+        }
     }
 
     abstract fun onBindElement(item: T)

@@ -5,7 +5,6 @@ import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
 import com.diary.fisher.create_data.business.ProcessCreateItemsUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
-import com.diary.fisher.create_data.models.NavigationDestinationType
 import com.diary.fisher.create_data.models.ProcessCreateItemClickResult
 import com.diary.fisher.create_data.rep.CreateDataItemsHolder
 import com.diary.fisher.repository.interfaces.FeedBoxRepository
@@ -15,7 +14,7 @@ class ProcessFeedBoxUseCase(
     private val feedBoxRepository: FeedBoxRepository
 ) : ProcessCreateItemsUseCase {
 
-    override fun processCreateItems(createDataItem: CreateDataItem): ProcessCreateItemClickResult {
+    override fun processItemClick(createDataItem: CreateDataItem): ProcessCreateItemClickResult {
         return when (createDataItem) {
             is CreateDataItem.SingleChoiceItem -> {
                 createDataItemsHolder.crateDataList.forEach {
@@ -27,18 +26,14 @@ class ProcessFeedBoxUseCase(
             }
             is CreateDataItem.SelectDataItem -> {
                 if (createDataItem.selectedItemId == Constants.NOT_SELECTED_ITEM_ID) {
-                    ProcessCreateItemClickResult.Navigation(
+                    ProcessCreateItemClickResult.NavigationDialog(
                         createDataType = CreateDataType.FEED_BOX_BRAND_NAME,
-                        navigationDestination = NavigationDestinationType.DIALOG,
-                        canBeSaved = false,
-                        canBeAdded = true,
-                        useDividerDecorator = true,
-                        elementId = createDataItem.elementId
+                        elementId = createDataItem.elementId,
+                        dialogTitle = "stub"
                     )
                 } else {
-                    ProcessCreateItemClickResult.Navigation(
+                    ProcessCreateItemClickResult.NavigationScreen(
                         createDataType = CreateDataType.FEED_BOX_BRAND_NAME,
-                        navigationDestination = NavigationDestinationType.SCREEN,
                         canBeSaved = false,
                         canBeAdded = true,
                         useDividerDecorator = true,
@@ -57,19 +52,19 @@ class ProcessFeedBoxUseCase(
         createDataItem.currentValue = text
     }
 
-    override suspend fun processCreateDataResult(
-        elementId: Long,
-        resultId: Long
-    ): List<MultipleTypesViewItem> {
-        return if (resultId == Constants.NOT_SELECTED_ITEM_ID) {
-            createDataItemsHolder.crateDataList
-        } else {
-            val itemToUpdate: CreateDataItem.SelectDataItem =
-                createDataItemsHolder.crateDataList.find { it is CreateDataItem.SelectDataItem && it.listItemId == elementId }!! as CreateDataItem.SelectDataItem
-
-            itemToUpdate.selectedItemId = resultId
-            itemToUpdate.text = feedBoxRepository.getFeedBoxBrandById(resultId).brandName
-            return createDataItemsHolder.crateDataList
-        }
-    }
+//    override suspend fun processCreateDataResult(
+//        elementId: Long,
+//        resultId: Long
+//    ): List<MultipleTypesViewItem> {
+//        return if (resultId == Constants.NOT_SELECTED_ITEM_ID) {
+//            createDataItemsHolder.crateDataList
+//        } else {
+//            val itemToUpdate: CreateDataItem.SelectDataItem =
+//                createDataItemsHolder.crateDataList.find { it is CreateDataItem.SelectDataItem && it.listItemId == elementId }!! as CreateDataItem.SelectDataItem
+//
+//            itemToUpdate.selectedItemId = resultId
+//            itemToUpdate.text = feedBoxRepository.getFeedBoxBrandById(resultId).brandName
+//            return createDataItemsHolder.crateDataList
+//        }
+//    }
 }

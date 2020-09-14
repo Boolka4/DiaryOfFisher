@@ -15,6 +15,7 @@ class PrepareRodsListUseCase(
     override suspend fun generateItemsList(): List<CreateDataItem> {
         val rodsList = rodRepository.getRodsList()
         val itemsList = mutableListOf<CreateDataItem>()
+        rodsList.sortedBy { it.id }
         rodsList.forEachIndexed { index, rod ->
             itemsList.add(
                 CreateDataItem.SelectDataItem(

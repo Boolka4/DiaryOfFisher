@@ -2,19 +2,17 @@ package com.diary.fisher.create_data.business.rod_list
 
 import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.create_data.business.AddDataUseCase
-import com.diary.fisher.create_data.models.NavigationDestinationType
 import com.diary.fisher.create_data.models.ProcessCreateItemClickResult
+import com.diary.fisher.create_data.rep.AddRodsStringsProvider
 
-class AddRodsListUseCase() : AddDataUseCase {
+class AddRodsListUseCase(private val addRodsStringsProvider: AddRodsStringsProvider) :
+    AddDataUseCase {
 
-    override fun processAddDataClick(): ProcessCreateItemClickResult.Navigation {
-        return ProcessCreateItemClickResult.Navigation(
+    override fun processAddDataClick(): ProcessCreateItemClickResult {
+        return ProcessCreateItemClickResult.NavigationDialog(
             createDataType = CreateDataType.CREATE_ROD,
-            navigationDestination = NavigationDestinationType.DIALOG,
-            canBeSaved = false,
-            canBeAdded = true,
-            useDividerDecorator = true,
-            elementId = -1
+            elementId = -1,
+            dialogTitle = addRodsStringsProvider.getCreateRodDialogTitle()
         )
     }
 }

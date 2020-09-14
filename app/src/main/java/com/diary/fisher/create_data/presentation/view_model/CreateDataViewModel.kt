@@ -23,22 +23,30 @@ class CreateDataViewModel(
 
     private val state: MutableLiveData<CreateDataState> = MutableLiveData()
 
-    private val navigation: SingleLiveEvent<ProcessCreateItemClickResult.Navigation> =
+    private val screenNavigation: SingleLiveEvent<ProcessCreateItemClickResult.NavigationScreen> =
+        SingleLiveEvent()
+
+    private val dialogNavigation: SingleLiveEvent<ProcessCreateItemClickResult.NavigationDialog> =
         SingleLiveEvent()
 
     init {
-        state.value = CreateDataState.ProgressState
-        viewModelScope.launch {
-            state.value = CreateDataState.ShowItemsState(prepareDataUseCase.getItemsList())
-        }
+        reloadData()
     }
 
     fun getReportsLiveData(): LiveData<CreateDataState> = state
 
-    fun getNavigationLiveData(): LiveData<ProcessCreateItemClickResult.Navigation> = navigation
+    fun getScreenNavigationLiveData(): LiveData<ProcessCreateItemClickResult.NavigationScreen> =
+        screenNavigation
+
+    fun getDialogNavigationLiveData(): LiveData<ProcessCreateItemClickResult.NavigationDialog> =
+        dialogNavigation
 
     fun onItemClicked(createDataItem: CreateDataItem) {
-        processClickResult(processCreateItemsUseCase.processCreateItems(createDataItem))
+        processClickResult(processCreateItemsUseCase.processItemClick(createDataItem))
+    }
+
+    fun onItemLongClicked(createDataItem: CreateDataItem) {
+
     }
 
     fun onInputTextChanged(
@@ -59,22 +67,24 @@ class CreateDataViewModel(
     }
 
     fun onCreateDataResult(elementId: Long, resultId: Long) {
-        viewModelScope.launch {
-            state.value = CreateDataState.ShowItemsState(
-                processCreateItemsUseCase.processCreateDataResult(
-                    elementId,
-                    resultId
-                )
-            )
-        }
+        reloadData()
     }
 
     private fun processClickResult(processCreateItemClickResult: ProcessCreateItemClickResult) {
         when (processCreateItemClickResult) {
             is ProcessCreateItemClickResult.UpdateList -> state.value =
                 CreateDataState.ShowItemsState(processCreateItemClickResult.itemsList)
-            is ProcessCreateItemClickResult.Navigation -> navigation.value =
+            is ProcessCreateItemClickResult.NavigationDialog -> dialogNavigation.value =
                 processCreateItemClickResult
+            is ProcessCreateItemClickResult.NavigationScreen -> screenNavigation.value =
+                processCreateItemClickResult
+        }
+    }
+
+    private fun reloadData() {
+        state.value = CreateDataState.ProgressState
+        viewModelScope.launch {
+            state.value = CreateDataState.ShowItemsState(prepareDataUseCase.getItemsList())
         }
     }
 }
