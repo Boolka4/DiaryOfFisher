@@ -24,8 +24,8 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                 ProcessCreateItemClickResult.NavigationScreen(
                     createDataType = CreateDataType.DIRECTIONS_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
-                    useDividerDecorator = false,
+                    canBeAdded = true,
+                    useDividerDecorator = true,
                     elementId = createDataItem.elementId
                 )
             }

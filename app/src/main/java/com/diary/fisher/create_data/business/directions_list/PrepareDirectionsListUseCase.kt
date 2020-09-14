@@ -1,31 +1,33 @@
-package com.diary.fisher.create_data.business.rod_list
+package com.diary.fisher.create_data.business.directions_list
 
 import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.create_data.business.BasePrepareDataUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
 import com.diary.fisher.create_data.rep.CreateDataItemsHolder
-import com.diary.fisher.repository.interfaces.RodRepository
+import com.diary.fisher.repository.interfaces.DirectionRepository
 
-class PrepareRodsListUseCase(
+class PrepareDirectionsListUseCase(
     createDataItemsHolder: CreateDataItemsHolder,
-    private val rodRepository: RodRepository
+    private val directionRepository: DirectionRepository
 ) : BasePrepareDataUseCase(createDataItemsHolder) {
 
     override suspend fun generateItemsList(): List<CreateDataItem> {
-        val rodsList = rodRepository.getRodsList()
+        val directionsList = directionRepository.getDirectionsList()
+
         val itemsList = mutableListOf<CreateDataItem>()
-        rodsList.sortedBy { it.id }
-        rodsList.forEach { rod ->
+        directionsList.sortedBy { it.directionId }
+        directionsList.forEach { direction ->
             itemsList.add(
                 CreateDataItem.SelectDataItem(
-                    elementId = rod.id,
-                    selectedItemId = rod.id,
+                    elementId = direction.directionId,
+                    selectedItemId = direction.directionId,
                     isMandatory = false,
-                    text = rod.brandName,
-                    createDataType = CreateDataType.RODS_LIST
+                    text = direction.brandName,
+                    createDataType = CreateDataType.DIRECTIONS_LIST
                 )
             )
         }
         return itemsList
     }
+
 }

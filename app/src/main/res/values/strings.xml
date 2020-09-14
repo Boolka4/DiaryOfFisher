@@ -9,6 +9,7 @@
     <string name="no_waters_yet">У вас еще сохраненных водоемов, нажмите кнопку внизу для добавления</string>
     <string name="create_hook_brand_title">Введите название бренда</string>
     <string name="create_rod_title">Введите название удилища</string>
+    <string name="create_direction_title">Введите название ориентира</string>
 
     <string name="create_feeder_box_brand_title">Введите название бренда</string>
 
