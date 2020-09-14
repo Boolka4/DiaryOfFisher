@@ -6,18 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diary.fisher.core.live_data.SingleLiveEvent
 import com.diary.fisher.core.ui.adapter.MultipleTypesViewItem
-import com.diary.fisher.create_data.business.CreateDataUseCase
+import com.diary.fisher.create_data.business.AddDataUseCase
+import com.diary.fisher.create_data.business.SaveDataUseCase
 import com.diary.fisher.create_data.business.PrepareDataUseCase
 import com.diary.fisher.create_data.business.ProcessCreateItemsUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
 import com.diary.fisher.create_data.models.ProcessCreateItemClickResult
 import kotlinx.coroutines.launch
 
-
 class CreateDataViewModel(
     private val prepareDataUseCase: PrepareDataUseCase,
     private val processCreateItemsUseCase: ProcessCreateItemsUseCase,
-    private val createDataUseCase: CreateDataUseCase
+    private val saveDataUseCase: SaveDataUseCase?,
+    private val addDataUseCase: AddDataUseCase?
 ) : ViewModel() {
 
     private val state: MutableLiveData<CreateDataState> = MutableLiveData()
@@ -37,14 +38,7 @@ class CreateDataViewModel(
     fun getNavigationLiveData(): LiveData<ProcessCreateItemClickResult.Navigation> = navigation
 
     fun onItemClicked(createDataItem: CreateDataItem) {
-        val processCreateItemClickResult =
-            processCreateItemsUseCase.processCreateItems(createDataItem)
-        when (processCreateItemClickResult) {
-            is ProcessCreateItemClickResult.UpdateList -> state.value =
-                CreateDataState.ShowItemsState(processCreateItemClickResult.itemsList)
-            is ProcessCreateItemClickResult.Navigation -> navigation.value =
-                processCreateItemClickResult
-        }
+        processClickResult(processCreateItemsUseCase.processCreateItems(createDataItem))
     }
 
     fun onInputTextChanged(
@@ -55,7 +49,13 @@ class CreateDataViewModel(
     }
 
     fun onSaveDataClicked() {
+//        saveDataUseCase.saveData()
+    }
 
+    fun onAddDataClicked() {
+        addDataUseCase?.processAddDataClick()?.let {
+            processClickResult(it)
+        }
     }
 
     fun onCreateDataResult(elementId: Long, resultId: Long) {
@@ -66,6 +66,15 @@ class CreateDataViewModel(
                     resultId
                 )
             )
+        }
+    }
+
+    private fun processClickResult(processCreateItemClickResult: ProcessCreateItemClickResult) {
+        when (processCreateItemClickResult) {
+            is ProcessCreateItemClickResult.UpdateList -> state.value =
+                CreateDataState.ShowItemsState(processCreateItemClickResult.itemsList)
+            is ProcessCreateItemClickResult.Navigation -> navigation.value =
+                processCreateItemClickResult
         }
     }
 }

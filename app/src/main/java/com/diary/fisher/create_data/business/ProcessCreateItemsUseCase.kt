@@ -11,5 +11,8 @@ interface ProcessCreateItemsUseCase {
 
     fun processTextInserted(createDataItem: CreateDataItem.InputFieldDataItem, text: String)
 
-    suspend fun processCreateDataResult(elementId: Long, resultId: Long): List<MultipleTypesViewItem>
+    suspend fun processCreateDataResult(
+        elementId: Long,
+        resultId: Long
+    ): List<MultipleTypesViewItem>
 }

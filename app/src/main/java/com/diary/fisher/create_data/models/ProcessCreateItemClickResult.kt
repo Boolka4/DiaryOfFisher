@@ -13,6 +13,9 @@ sealed class ProcessCreateItemClickResult {
     data class Navigation(
         val createDataType: CreateDataType,
         val navigationDestination: NavigationDestinationType,
+        val canBeSaved: Boolean,
+        val canBeAdded: Boolean,
+        val useDividerDecorator: Boolean,
         val elementId: Long
     ) : ProcessCreateItemClickResult()
 }

@@ -71,7 +71,12 @@ class ReportsListFragment : BaseFragment() {
 
             findNavController().navigate(
                 R.id.action_reportsListFragment_to_createDataFragment,
-                CreateDataFragment.getBundle(CreateDataType.FEED_BOX)
+                CreateDataFragment.getBundle(
+                    CreateDataType.ALL_SETTINGS_LIST,
+                    canBeAdded = false,
+                    canBeSaved = false,
+                    useDividerDecorator = true
+                )
             )
         }
     }

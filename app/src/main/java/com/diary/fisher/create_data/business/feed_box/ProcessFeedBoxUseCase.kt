@@ -13,8 +13,7 @@ import com.diary.fisher.repository.interfaces.FeedBoxRepository
 class ProcessFeedBoxUseCase(
     private val createDataItemsHolder: CreateDataItemsHolder,
     private val feedBoxRepository: FeedBoxRepository
-) :
-    ProcessCreateItemsUseCase {
+) : ProcessCreateItemsUseCase {
 
     override fun processCreateItems(createDataItem: CreateDataItem): ProcessCreateItemClickResult {
         return when (createDataItem) {
@@ -29,15 +28,21 @@ class ProcessFeedBoxUseCase(
             is CreateDataItem.SelectDataItem -> {
                 if (createDataItem.selectedItemId == Constants.NOT_SELECTED_ITEM_ID) {
                     ProcessCreateItemClickResult.Navigation(
-                        CreateDataType.FEED_BOX_BRAND_NAME,
-                        NavigationDestinationType.DIALOG,
-                        createDataItem.elementId
+                        createDataType = CreateDataType.FEED_BOX_BRAND_NAME,
+                        navigationDestination = NavigationDestinationType.DIALOG,
+                        canBeSaved = false,
+                        canBeAdded = true,
+                        useDividerDecorator = true,
+                        elementId = createDataItem.elementId
                     )
                 } else {
                     ProcessCreateItemClickResult.Navigation(
-                        CreateDataType.FEED_BOX_BRAND_NAME,
-                        NavigationDestinationType.SCREEN,
-                        createDataItem.elementId
+                        createDataType = CreateDataType.FEED_BOX_BRAND_NAME,
+                        navigationDestination = NavigationDestinationType.SCREEN,
+                        canBeSaved = false,
+                        canBeAdded = true,
+                        useDividerDecorator = true,
+                        elementId = createDataItem.elementId
                     )
                 }
             }

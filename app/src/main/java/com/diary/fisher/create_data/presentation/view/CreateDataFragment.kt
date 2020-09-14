@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diary.fisher.R
 import com.diary.fisher.core.models.common.CreateDataType
@@ -37,6 +38,27 @@ class CreateDataFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rvCreateData.adapter = createDataAdapter
+
+        if (requireArguments().getBoolean(ARG_USE_DIVIDER_DECORATOR)) {
+            rvCreateData.addItemDecoration(
+                DividerItemDecoration(
+                    rvCreateData.context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+        if (requireArguments().getBoolean(ARG_CAN_BE_SAVED)) {
+            btnSaveData.visibility = View.VISIBLE
+        } else {
+            btnSaveData.visibility = View.GONE
+        }
+
+        if (requireArguments().getBoolean(ARG_CAN_BE_ADDED)) {
+            fabAddData.visibility = View.VISIBLE
+        } else {
+            fabAddData.visibility = View.GONE
+        }
+
         rvCreateData.layoutManager = LinearLayoutManager(view.context)
         val screenStateObserver = Observer<CreateDataState> {
             when (it) {
@@ -54,10 +76,6 @@ class CreateDataFragment : BaseFragment() {
         }
 
         val navigationObserver = Observer<ProcessCreateItemClickResult.Navigation> {
-//            findNavController().navigate(
-//                R.id.action_reportsListFragment_to_createDataFragment,
-//                CreateDataFragment.getBundle(CreateDataType.FEED_BOX)
-//            )
             when (it.navigationDestination) {
                 NavigationDestinationType.DIALOG -> {
                     setFragmentResultListener(it.createDataType.name) { key, bundle ->
@@ -70,7 +88,7 @@ class CreateDataFragment : BaseFragment() {
                     findNavController().navigate(
                         R.id.action_createDataFragment_to_createSingleLineDataDialogFragment,
                         CreateSingleLineDataDialogFragment.getBundle(
-                            CreateDataType.FEED_BOX_BRAND_NAME,
+                            it.createDataType,
                             it.createDataType.name,
                             it.elementId
                         )
@@ -86,10 +104,11 @@ class CreateDataFragment : BaseFragment() {
 
                     findNavController().navigate(
                         R.id.action_createDataFragment_self,
-                        CreateSingleLineDataDialogFragment.getBundle(
-                            CreateDataType.FEED_BOX_BRAND_NAME,
-                            it.createDataType.name,
-                            it.elementId
+                        getBundle(
+                            createDataType = it.createDataType,
+                            canBeSaved = it.canBeSaved,
+                            canBeAdded = it.canBeAdded,
+                            useDividerDecorator = it.useDividerDecorator
                         )
                     )
                 }
@@ -100,14 +119,26 @@ class CreateDataFragment : BaseFragment() {
         viewModel.getNavigationLiveData().observe(viewLifecycleOwner, navigationObserver)
 
         btnSaveData.setOnClickListener { viewModel.onSaveDataClicked() }
+        fabAddData.setOnClickListener { viewModel.onAddDataClicked() }
     }
 
     companion object {
         private const val ARG_DATA_TYPE = "ARG_DATA_TYPE"
+        private const val ARG_CAN_BE_SAVED = "ARG_CAN_BE_SAVED"
+        private const val ARG_CAN_BE_ADDED = "ARG_CAN_BE_ADDED"
+        private const val ARG_USE_DIVIDER_DECORATOR = "ARG_USE_DIVIDER_DECORATOR"
 
-        fun getBundle(createDataType: CreateDataType): Bundle {
+        fun getBundle(
+            createDataType: CreateDataType,
+            canBeSaved: Boolean,
+            canBeAdded: Boolean,
+            useDividerDecorator: Boolean = false
+        ): Bundle {
             val bundle = Bundle()
             bundle.putParcelable(ARG_DATA_TYPE, createDataType)
+            bundle.putBoolean(ARG_CAN_BE_SAVED, canBeSaved)
+            bundle.putBoolean(ARG_CAN_BE_ADDED, canBeAdded)
+            bundle.putBoolean(ARG_USE_DIVIDER_DECORATOR, useDividerDecorator)
             return bundle
         }
     }

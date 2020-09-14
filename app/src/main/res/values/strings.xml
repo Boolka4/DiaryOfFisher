@@ -44,6 +44,14 @@
     <string name="flat_cast_select_line_width">Длина поводка: </string>
     <string name="flat_cast_select_mounting">Монтаж: %1$s</string>
 
+    <string name="all_settings_list_rods">Удилища</string>
+    <string name="all_settings_list_directions">Направления</string>
+    <string name="all_settings_list_bites">Насадки</string>
+    <string name="all_settings_list_dips">Дипы</string>
+    <string name="all_settings_list_feeds">Корма</string>
+    <string name="all_settings_list_hooks">Крючки</string>
+    <string name="all_settings_list_mountings">Монтажи</string>
+
     <string name="common_text_ok">Ок</string>
     <string name="common_text_save">Сохранить</string>
     <string name="common_text_cancel">Отмена</string>

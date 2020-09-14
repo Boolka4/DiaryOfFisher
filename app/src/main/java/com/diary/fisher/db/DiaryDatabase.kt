@@ -9,17 +9,20 @@ import com.diary.fisher.db.converters.feed_box.FeedBoxFormTypeConverter
 import com.diary.fisher.db.converters.feed_box.FeedBoxHoleTypeConverter
 import com.diary.fisher.db.converters.feed_box.FeedBoxMaterialTypeConverter
 import com.diary.fisher.db.converters.feed_box.FeedBoxMountingConverter
-import com.diary.fisher.db.dao.FeedBoxDao
-import com.diary.fisher.db.dao.HooksDao
-import com.diary.fisher.db.dao.LinesDao
-import com.diary.fisher.db.dao.WatersDao
+import com.diary.fisher.db.dao.*
+import com.diary.fisher.db.models.dip.DipDB
+import com.diary.fisher.db.models.direction.DirectionDB
+import com.diary.fisher.db.models.feed.FeedDB
 import com.diary.fisher.db.models.feed_box.FeedBoxBrandDB
 import com.diary.fisher.db.models.feed_box.FeedBoxDB
 import com.diary.fisher.db.models.water.WaterDB
 import com.diary.fisher.db.models.hook.HookBrandDB
 import com.diary.fisher.db.models.hook.HookModelDB
+import com.diary.fisher.db.models.hook_prototype.HookPrototypeDB
 import com.diary.fisher.db.models.line.LineBrandDB
 import com.diary.fisher.db.models.line.LineDiameterDB
+import com.diary.fisher.db.models.mountings.MountingDB
+import com.diary.fisher.db.models.rod.RodDB
 import com.diary.fisher.db.models.tackle.reel.ReelDB
 import com.diary.fisher.db.models.tackle.road.RoadDB
 
@@ -32,8 +35,14 @@ import com.diary.fisher.db.models.tackle.road.RoadDB
         ReelDB::class,
         RoadDB::class,
         FeedBoxBrandDB::class,
-        FeedBoxDB::class],
-    version = 2,
+        FeedBoxDB::class,
+        DipDB::class,
+        DirectionDB::class,
+        FeedDB::class,
+        HookPrototypeDB::class,
+        MountingDB::class,
+        RodDB::class],
+    version = 3,
     exportSchema = true
 )
 @TypeConverters(
@@ -53,4 +62,16 @@ abstract class DiaryDatabase : RoomDatabase() {
     abstract fun linesDao(): LinesDao
 
     abstract fun feedBoxDao(): FeedBoxDao
+
+    abstract fun dipDao(): DipDao
+
+    abstract fun directionDao(): DirectionDao
+
+    abstract fun feedDao(): FeedDao
+
+    abstract fun hookPrototypeDao(): HookPrototypeDao
+
+    abstract fun mountingDao(): MountingDao
+
+    abstract fun rodsDao(): RodsDao
 }
