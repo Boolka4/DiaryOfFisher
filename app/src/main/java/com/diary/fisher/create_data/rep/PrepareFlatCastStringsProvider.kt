@@ -15,7 +15,7 @@ class PrepareFlatCastStringsProvider(private var resourceManager: ResourceManage
     fun getDirectionText(directionValue: String) =
         resourceManager.getString(R.string.flat_cast_select_direction, directionValue)
 
-    fun getBiteText() = resourceManager.getString(R.string.flat_cast_select_bite)
+    fun getBaitText() = resourceManager.getString(R.string.flat_cast_select_bait)
 
     fun getDipText(dipValue: String) =
         resourceManager.getString(R.string.flat_cast_select_dip, dipValue)

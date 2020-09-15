@@ -37,8 +37,8 @@ class PrepareAllSettingsListUseCase(
                 elementId = 3,
                 selectedItemId = 3,
                 isMandatory = false,
-                text = allSettingsListStringsProvider.getBitesText(),
-                createDataType = CreateDataType.BITES_LIST
+                text = allSettingsListStringsProvider.getBaitsText(),
+                createDataType = CreateDataType.BAITS_LIST
             )
         )
 

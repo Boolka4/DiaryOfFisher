@@ -4,6 +4,9 @@ import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.create_data.business.PrepareDataUseCase
 import com.diary.fisher.create_data.business.all_settings_list.PrepareAllSettingsListUseCase
 import com.diary.fisher.create_data.business.all_settings_list.ProcessAllSettingsListUseCase
+import com.diary.fisher.create_data.business.baits_list.AddBaitsListUseCase
+import com.diary.fisher.create_data.business.baits_list.PrepareBaitsListUseCase
+import com.diary.fisher.create_data.business.baits_list.ProcessBaitsListUseCase
 import com.diary.fisher.create_data.business.directions_list.AddDirectionsListUseCase
 import com.diary.fisher.create_data.business.directions_list.PrepareDirectionsListUseCase
 import com.diary.fisher.create_data.business.directions_list.ProcessDirectionsListUseCase
@@ -25,6 +28,7 @@ val createDataModule = module {
             CreateDataType.ALL_SETTINGS_LIST -> PrepareAllSettingsListUseCase(get(), get())
             CreateDataType.RODS_LIST -> PrepareRodsListUseCase(get(), get())
             CreateDataType.DIRECTIONS_LIST -> PrepareDirectionsListUseCase(get(), get())
+            CreateDataType.BAITS_LIST -> PrepareBaitsListUseCase(get(), get())
             else -> TODO()
         }
         val processCreateItemsUseCase = when (createDataType) {
@@ -33,6 +37,7 @@ val createDataModule = module {
             CreateDataType.ALL_SETTINGS_LIST -> ProcessAllSettingsListUseCase()
             CreateDataType.RODS_LIST -> ProcessRodsListUseCase(get())
             CreateDataType.DIRECTIONS_LIST -> ProcessDirectionsListUseCase(get())
+            CreateDataType.BAITS_LIST -> ProcessBaitsListUseCase(get())
             else -> TODO()
         }
         val createDataUseCase = when (createDataType) {
@@ -42,6 +47,7 @@ val createDataModule = module {
         val addDataUseCase = when (createDataType) {
             CreateDataType.RODS_LIST -> AddRodsListUseCase(get())
             CreateDataType.DIRECTIONS_LIST -> AddDirectionsListUseCase(get())
+            CreateDataType.BAITS_LIST -> AddBaitsListUseCase(get())
             else -> null
         }
         CreateDataViewModel(
@@ -58,6 +64,8 @@ val createDataModule = module {
     factory { AddRodsStringsProvider(get()) }
 
     factory { DirectionStringsProvider(get()) }
+
+    factory { BaitStringsProvider(get()) }
 
     single { CreateDataItemsHolder() }
 }

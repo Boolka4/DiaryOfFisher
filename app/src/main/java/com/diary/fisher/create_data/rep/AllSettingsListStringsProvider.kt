@@ -9,7 +9,7 @@ class AllSettingsListStringsProvider(private val resourceManager: ResourceManage
 
     fun getDirectionsText() = resourceManager.getString(R.string.all_settings_list_directions)
 
-    fun getBitesText() = resourceManager.getString(R.string.all_settings_list_bites)
+    fun getBaitsText() = resourceManager.getString(R.string.all_settings_list_baits)
 
     fun getDipsText() = resourceManager.getString(R.string.all_settings_list_dips)
 

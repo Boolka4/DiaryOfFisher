@@ -10,6 +10,7 @@
     <string name="create_hook_brand_title">Введите название бренда</string>
     <string name="create_rod_title">Введите название удилища</string>
     <string name="create_direction_title">Введите название ориентира</string>
+    <string name="create_bait_title">Введите название приманки</string>
 
     <string name="create_feeder_box_brand_title">Введите название бренда</string>
 
@@ -39,7 +40,7 @@
     <string name="feed_box_mounting_type_in_line">Внутренний</string>
 
     <string name="flat_cast_select_direction">Направление: %1$s</string>
-    <string name="flat_cast_select_bite">Насадка: </string>
+    <string name="flat_cast_select_bait">Насадка: </string>
     <string name="flat_cast_select_dip">Дип: %1$s</string>
     <string name="flat_cast_select_feed">Корм: %1$s</string>
     <string name="flat_cast_select_hook">Крюк: %1$s</string>
@@ -48,7 +49,7 @@
 
     <string name="all_settings_list_rods">Удилища</string>
     <string name="all_settings_list_directions">Направления</string>
-    <string name="all_settings_list_bites">Насадки</string>
+    <string name="all_settings_list_baits">Насадки</string>
     <string name="all_settings_list_dips">Дипы</string>
     <string name="all_settings_list_feeds">Корма</string>
     <string name="all_settings_list_hooks">Крючки</string>

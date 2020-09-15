@@ -1,29 +1,29 @@
-package com.diary.fisher.create_data.business.directions_list
+package com.diary.fisher.create_data.business.baits_list
 
 import com.diary.fisher.core.models.common.CreateDataType
 import com.diary.fisher.create_data.business.BasePrepareDataUseCase
 import com.diary.fisher.create_data.models.CreateDataItem
 import com.diary.fisher.create_data.rep.CreateDataItemsHolder
-import com.diary.fisher.repository.interfaces.DirectionRepository
+import com.diary.fisher.repository.interfaces.BaitRepository
 
-class PrepareDirectionsListUseCase(
+class PrepareBaitsListUseCase(
     createDataItemsHolder: CreateDataItemsHolder,
-    private val directionRepository: DirectionRepository
+    private val baitRepository: BaitRepository
 ) : BasePrepareDataUseCase(createDataItemsHolder) {
 
     override suspend fun generateItemsList(): List<CreateDataItem> {
-        val directionsList = directionRepository.getDirectionsList()
+        val baitsList = baitRepository.getBaitsList()
 
         val itemsList = mutableListOf<CreateDataItem>()
-        directionsList.sortedBy { it.directionId }
-        directionsList.forEach { direction ->
+        baitsList.sortedBy { it.id }
+        baitsList.forEach { direction ->
             itemsList.add(
                 CreateDataItem.SelectDataItem(
-                    elementId = direction.directionId,
-                    selectedItemId = direction.directionId,
+                    elementId = direction.id,
+                    selectedItemId = direction.id,
                     isMandatory = false,
                     text = direction.brandName,
-                    createDataType = CreateDataType.DIRECTIONS_LIST
+                    createDataType = CreateDataType.BAITS_LIST
                 )
             )
         }

@@ -29,11 +29,11 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
                     elementId = createDataItem.elementId
                 )
             }
-            CreateDataType.BITES_LIST -> {
+            CreateDataType.BAITS_LIST -> {
                 ProcessCreateItemClickResult.NavigationScreen(
-                    createDataType = CreateDataType.RODS_LIST,
+                    createDataType = CreateDataType.BAITS_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
+                    canBeAdded = true,
                     useDividerDecorator = false,
                     elementId = createDataItem.elementId
                 )

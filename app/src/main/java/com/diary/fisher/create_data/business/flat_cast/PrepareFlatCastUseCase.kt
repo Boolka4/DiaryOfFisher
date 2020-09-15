@@ -22,8 +22,8 @@ class PrepareFlatCastUseCase(
         val lastTimeItemId = getTimeItem(itemsList, lastRodElementId)
         val lastDistanceItemId = getDistanceItems(itemsList, lastTimeItemId)
         val lastDirectionItemId = getDirectionItem(itemsList, lastDistanceItemId)
-        val lastBiteItemId = getBiteItems(itemsList, lastDirectionItemId)
-        val lastDipItemId = getDipItem(itemsList, lastBiteItemId)
+        val lastBaitItemId = getBaitItems(itemsList, lastDirectionItemId)
+        val lastDipItemId = getDipItem(itemsList, lastBaitItemId)
         val lastFeedItemId = getFeedItems(itemsList, lastDipItemId)
         val lastHookItemId = getHookItem(itemsList, lastFeedItemId)
         val lastHookLineId = getHookLineItems(itemsList, lastHookItemId)
@@ -107,23 +107,23 @@ class PrepareFlatCastUseCase(
         return directionItemId
     }
 
-    private fun getBiteItems(
+    private fun getBaitItems(
         itemsList: MutableList<CreateDataItem>,
         previousElementId: Long
     ): Long {
-        val biteDescriptionId = previousElementId + 1
+        val baitDescriptionId = previousElementId + 1
 
         itemsList.add(
             CreateDataItem.InfoTextItem(
-                elementId = biteDescriptionId,
-                text = prepareFlatCastStringsProvider.getBiteText()
+                elementId = baitDescriptionId,
+                text = prepareFlatCastStringsProvider.getBaitText()
             )
         )
-        val selectedBiteId = biteDescriptionId + 1
+        val selectedBaitId = baitDescriptionId + 1
 
         itemsList.add(
             CreateDataItem.SelectDataItem(
-                elementId = selectedBiteId,
+                elementId = selectedBaitId,
                 selectedItemId = Constants.NOT_SELECTED_ITEM_ID,
                 isMandatory = true,
                 text = "stub",
@@ -131,7 +131,7 @@ class PrepareFlatCastUseCase(
             )
         )
 
-        return selectedBiteId
+        return selectedBaitId
     }
 
     private fun getDipItem(

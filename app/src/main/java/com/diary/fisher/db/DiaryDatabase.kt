@@ -10,6 +10,7 @@ import com.diary.fisher.db.converters.feed_box.FeedBoxHoleTypeConverter
 import com.diary.fisher.db.converters.feed_box.FeedBoxMaterialTypeConverter
 import com.diary.fisher.db.converters.feed_box.FeedBoxMountingConverter
 import com.diary.fisher.db.dao.*
+import com.diary.fisher.db.models.bait.BaitDB
 import com.diary.fisher.db.models.dip.DipDB
 import com.diary.fisher.db.models.direction.DirectionDB
 import com.diary.fisher.db.models.feed.FeedDB
@@ -37,12 +38,13 @@ import com.diary.fisher.db.models.tackle.road.RoadDB
         FeedBoxBrandDB::class,
         FeedBoxDB::class,
         DipDB::class,
+        BaitDB::class,
         DirectionDB::class,
         FeedDB::class,
         HookPrototypeDB::class,
         MountingDB::class,
         RodDB::class],
-    version = 3,
+    version = 4,
     exportSchema = true
 )
 @TypeConverters(
@@ -64,6 +66,8 @@ abstract class DiaryDatabase : RoomDatabase() {
     abstract fun feedBoxDao(): FeedBoxDao
 
     abstract fun dipDao(): DipDao
+
+    abstract fun baitDao(): BaitDao
 
     abstract fun directionDao(): DirectionDao
 
