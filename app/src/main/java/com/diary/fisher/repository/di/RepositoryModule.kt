@@ -9,6 +9,7 @@ import com.diary.fisher.repository.mappers.direction.DirectionMapper
 import com.diary.fisher.repository.mappers.feed.FeedMapper
 import com.diary.fisher.repository.mappers.feed_box.FeedBoxBrandMapper
 import com.diary.fisher.repository.mappers.hook.HookBrandMapper
+import com.diary.fisher.repository.mappers.hook_prototype.HookPrototypeMapper
 import com.diary.fisher.repository.mappers.rod.RodMapper
 import com.diary.fisher.repository.resource.ResourceManager
 import org.koin.dsl.module
@@ -58,6 +59,8 @@ val repositoryModule = module {
             get()
         )
     }
+
+    single { HookPrototypeMapper() }
 
     single<MountingRepository> { MountingRepositoryImpl(get<DiaryDatabase>().mountingDao(), get()) }
 

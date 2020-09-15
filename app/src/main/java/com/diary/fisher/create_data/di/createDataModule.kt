@@ -18,6 +18,8 @@ import com.diary.fisher.create_data.business.feed_box.ProcessFeedBoxUseCase
 import com.diary.fisher.create_data.business.feeds_list.AddFeedsListUseCase
 import com.diary.fisher.create_data.business.feeds_list.PrepareFeedsListUseCase
 import com.diary.fisher.create_data.business.feeds_list.ProcessFeedsListUseCase
+import com.diary.fisher.create_data.business.hook_prototypes_list.AddHookPrototypesListUseCase
+import com.diary.fisher.create_data.business.hook_prototypes_list.PrepareHookPrototypesListUseCase
 import com.diary.fisher.create_data.business.rod_list.AddRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.PrepareRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.ProcessRodsListUseCase
@@ -37,6 +39,7 @@ val createDataModule = module {
             CreateDataType.BAITS_LIST -> PrepareBaitsListUseCase(get(), get())
             CreateDataType.DIPS_LIST -> PrepareDipsListUseCase(get(), get())
             CreateDataType.FEEDS_LIST -> PrepareFeedsListUseCase(get(), get())
+            CreateDataType.HOOK_PROTOTYPES_LIST -> PrepareHookPrototypesListUseCase(get(), get())
             else -> TODO()
         }
         val processCreateItemsUseCase = when (createDataType) {
@@ -48,6 +51,7 @@ val createDataModule = module {
             CreateDataType.BAITS_LIST -> ProcessBaitsListUseCase(get())
             CreateDataType.DIPS_LIST -> ProcessDipsListUseCase(get())
             CreateDataType.FEEDS_LIST -> ProcessFeedsListUseCase(get())
+            CreateDataType.HOOK_PROTOTYPES_LIST -> ProcessFeedsListUseCase(get())
             else -> TODO()
         }
         val createDataUseCase = when (createDataType) {
@@ -60,6 +64,7 @@ val createDataModule = module {
             CreateDataType.BAITS_LIST -> AddBaitsListUseCase(get())
             CreateDataType.DIPS_LIST -> AddDipsListUseCase(get())
             CreateDataType.FEEDS_LIST -> AddFeedsListUseCase(get())
+            CreateDataType.HOOK_PROTOTYPES_LIST -> AddHookPrototypesListUseCase(get())
             else -> null
         }
         CreateDataViewModel(
@@ -82,6 +87,8 @@ val createDataModule = module {
     factory { DipStringsProvider(get()) }
 
     factory { FeedStringsProvider(get()) }
+
+    factory { HookPrototypesStringsProvider(get()) }
 
     single { CreateDataItemsHolder() }
 }

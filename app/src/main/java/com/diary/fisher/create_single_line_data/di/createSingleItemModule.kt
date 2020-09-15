@@ -28,7 +28,7 @@ val singleLineDataModule = module {
             FEEDS_LIST -> TODO()
             CREATE_FEED -> CreateSingleLineFeedUseCase(selectedItemId, get())
             HOOK_PROTOTYPES_LIST -> TODO()
-            CREATE_HOOK_PROTOTYPE -> TODO()
+            CREATE_HOOK_PROTOTYPE -> CreateSingleLineHookPrototype(selectedItemId, get())
             MOUNTINGS_LIST -> TODO()
             CREATE_MOUNTING -> TODO()
         }
