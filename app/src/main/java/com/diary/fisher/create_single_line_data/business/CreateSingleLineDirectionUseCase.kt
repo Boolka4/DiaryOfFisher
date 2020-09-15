@@ -14,5 +14,4 @@ class CreateSingleLineDirectionUseCase(
     override suspend fun insertSingleLineElement(dbId: Long, singleLineText: String): Long {
         return directionRepository.insertDirection(Direction(dbId, singleLineText))
     }
-
 }
