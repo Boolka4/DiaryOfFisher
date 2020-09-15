@@ -40,36 +40,36 @@ class ProcessAllSettingsListUseCase() : ProcessCreateItemsUseCase {
             }
             CreateDataType.DIPS_LIST -> {
                 ProcessCreateItemClickResult.NavigationScreen(
-                    createDataType = CreateDataType.RODS_LIST,
+                    createDataType = CreateDataType.DIPS_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
+                    canBeAdded = true,
                     useDividerDecorator = false,
                     elementId = createDataItem.elementId
                 )
             }
             CreateDataType.FEEDS_LIST -> {
                 ProcessCreateItemClickResult.NavigationScreen(
-                    createDataType = CreateDataType.RODS_LIST,
+                    createDataType = CreateDataType.FEEDS_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
+                    canBeAdded = true,
                     useDividerDecorator = false,
                     elementId = createDataItem.elementId
                 )
             }
             CreateDataType.HOOK_PROTOTYPES_LIST -> {
                 ProcessCreateItemClickResult.NavigationScreen(
-                    createDataType = CreateDataType.RODS_LIST,
+                    createDataType = CreateDataType.HOOK_PROTOTYPES_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
+                    canBeAdded = true,
                     useDividerDecorator = false,
                     elementId = createDataItem.elementId
                 )
             }
             CreateDataType.MOUNTINGS_LIST -> {
                 ProcessCreateItemClickResult.NavigationScreen(
-                    createDataType = CreateDataType.RODS_LIST,
+                    createDataType = CreateDataType.MOUNTINGS_LIST,
                     canBeSaved = false,
-                    canBeAdded = false,
+                    canBeAdded = true,
                     useDividerDecorator = false,
                     elementId = createDataItem.elementId
                 )

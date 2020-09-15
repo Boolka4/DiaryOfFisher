@@ -24,7 +24,7 @@ val singleLineDataModule = module {
             BAITS_LIST -> TODO()
             CREATE_BAIT -> CreateSingleLineBaitUseCase(selectedItemId, get())
             DIPS_LIST -> TODO()
-            CREATE_DIP -> TODO()
+            CREATE_DIP -> CreateSingleLineDipUseCase(selectedItemId, get())
             FEEDS_LIST -> TODO()
             CREATE_FEED -> TODO()
             HOOK_PROTOTYPES_LIST -> TODO()

@@ -11,6 +11,7 @@
     <string name="create_rod_title">Введите название удилища</string>
     <string name="create_direction_title">Введите название ориентира</string>
     <string name="create_bait_title">Введите название приманки</string>
+    <string name="create_dips_title">Введите название дипа</string>
 
     <string name="create_feeder_box_brand_title">Введите название бренда</string>
 
