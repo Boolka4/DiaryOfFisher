@@ -30,7 +30,7 @@ val singleLineDataModule = module {
             HOOK_PROTOTYPES_LIST -> TODO()
             CREATE_HOOK_PROTOTYPE -> CreateSingleLineHookPrototype(selectedItemId, get())
             MOUNTINGS_LIST -> TODO()
-            CREATE_MOUNTING -> TODO()
+            CREATE_MOUNTING -> CreateSingleLineMountingUseCase(selectedItemId, get())
         }
         CreateSingleLineDataViewModel(createSingleLineDataUseCase)
     }

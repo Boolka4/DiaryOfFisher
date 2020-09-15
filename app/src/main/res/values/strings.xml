@@ -14,6 +14,7 @@
     <string name="create_dips_title">Введите название дипа</string>
     <string name="create_feeds_title">Введите название прикормки</string>
     <string name="create_hook_prototype_title">Введите название крючка</string>
+    <string name="create_mounting_title">Введите название монтажа</string>
 
     <string name="create_feeder_box_brand_title">Введите название бренда</string>
 
