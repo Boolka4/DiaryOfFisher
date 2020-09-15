@@ -6,6 +6,7 @@ import com.diary.fisher.repository.interfaces.*
 import com.diary.fisher.repository.mappers.bait.BaitMapper
 import com.diary.fisher.repository.mappers.dip.DipMapper
 import com.diary.fisher.repository.mappers.direction.DirectionMapper
+import com.diary.fisher.repository.mappers.feed.FeedMapper
 import com.diary.fisher.repository.mappers.feed_box.FeedBoxBrandMapper
 import com.diary.fisher.repository.mappers.hook.HookBrandMapper
 import com.diary.fisher.repository.mappers.rod.RodMapper
@@ -38,6 +39,10 @@ val repositoryModule = module {
 
     single { BaitMapper() }
 
+    single<FeedRepository> { FeedRepositoryImpl(get<DiaryDatabase>().feedDao(), get()) }
+
+    single { FeedMapper() }
+
     single<DirectionRepository> {
         DirectionRepositoryImpl(
             get<DiaryDatabase>().directionDao(),
@@ -46,8 +51,6 @@ val repositoryModule = module {
     }
 
     single { DirectionMapper() }
-
-    single<FeedRepository> { FeedRepositoryImpl(get<DiaryDatabase>().feedDao(), get()) }
 
     single<HookPrototypeRepository> {
         HookPrototypeRepositoryImpl(

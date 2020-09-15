@@ -15,6 +15,9 @@ import com.diary.fisher.create_data.business.directions_list.PrepareDirectionsLi
 import com.diary.fisher.create_data.business.directions_list.ProcessDirectionsListUseCase
 import com.diary.fisher.create_data.business.feed_box.PrepareFeedBoxDataUseCase
 import com.diary.fisher.create_data.business.feed_box.ProcessFeedBoxUseCase
+import com.diary.fisher.create_data.business.feeds_list.AddFeedsListUseCase
+import com.diary.fisher.create_data.business.feeds_list.PrepareFeedsListUseCase
+import com.diary.fisher.create_data.business.feeds_list.ProcessFeedsListUseCase
 import com.diary.fisher.create_data.business.rod_list.AddRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.PrepareRodsListUseCase
 import com.diary.fisher.create_data.business.rod_list.ProcessRodsListUseCase
@@ -33,6 +36,7 @@ val createDataModule = module {
             CreateDataType.DIRECTIONS_LIST -> PrepareDirectionsListUseCase(get(), get())
             CreateDataType.BAITS_LIST -> PrepareBaitsListUseCase(get(), get())
             CreateDataType.DIPS_LIST -> PrepareDipsListUseCase(get(), get())
+            CreateDataType.FEEDS_LIST -> PrepareFeedsListUseCase(get(), get())
             else -> TODO()
         }
         val processCreateItemsUseCase = when (createDataType) {
@@ -43,6 +47,7 @@ val createDataModule = module {
             CreateDataType.DIRECTIONS_LIST -> ProcessDirectionsListUseCase(get())
             CreateDataType.BAITS_LIST -> ProcessBaitsListUseCase(get())
             CreateDataType.DIPS_LIST -> ProcessDipsListUseCase(get())
+            CreateDataType.FEEDS_LIST -> ProcessFeedsListUseCase(get())
             else -> TODO()
         }
         val createDataUseCase = when (createDataType) {
@@ -54,6 +59,7 @@ val createDataModule = module {
             CreateDataType.DIRECTIONS_LIST -> AddDirectionsListUseCase(get())
             CreateDataType.BAITS_LIST -> AddBaitsListUseCase(get())
             CreateDataType.DIPS_LIST -> AddDipsListUseCase(get())
+            CreateDataType.FEEDS_LIST -> AddFeedsListUseCase(get())
             else -> null
         }
         CreateDataViewModel(
@@ -74,6 +80,8 @@ val createDataModule = module {
     factory { BaitStringsProvider(get()) }
 
     factory { DipStringsProvider(get()) }
+
+    factory { FeedStringsProvider(get()) }
 
     single { CreateDataItemsHolder() }
 }
